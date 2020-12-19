@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>docspell-consumedir</Name>
+  <Repository>eikek0/docspell:consumedir-LATEST</Repository>
+  <Registry>https://hub.docker.com/r/eikek0/docspell/</Registry>
+  <Network>docspell-net</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://hub.docker.com/r/eikek0/docspell/</Support>
+  <Project/>
+  <Overview>Docker image for Docspell: docspell-consumedir. https://github.com/eikek/docspell   Converted By Community Applications   Always verify this template (and values) against the dockerhub support page for the container</Overview>
+  <Category>Productivity:</Category>
+  <WebUI>http://[IP]:[PORT:7878]</WebUI>
+  <TemplateURL/>
+  <Icon>/plugins/dynamix.docker.manager/images/question.png</Icon>
+  <ExtraParams>--mac-address 02:42:E0:C1:01:17 --env-file=/mnt/user/appdata/flo-docspell/.env</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1608243840</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Description>Docker images for Docspell. https://github.com/eikek/docspell   Converted By Community Applications   Always verify this template (and values) against the dockerhub support page for the container</Description>
+  <Networking>
+    <Mode>docspell-net</Mode>
+    <Publish/>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/flo-docspell/docs</HostDir>
+      <ContainerDir>/opt/docs</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment/>
+  <Labels/>
+  <Config Name="/opt/docs" Target="/opt/docs" Default="" Mode="rw" Description="Container Path: /opt/docspell.conf" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/flo-docspell/docs</Config>
+</Container>
