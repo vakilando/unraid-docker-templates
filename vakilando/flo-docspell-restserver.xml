@@ -14,7 +14,7 @@
   <WebUI>http://[IP]:[PORT:7880]</WebUI>
   <TemplateURL/>
   <Icon>/plugins/dynamix.docker.manager/images/question.png</Icon>
-  <ExtraParams>--mac-address 02:42:E0:C1:01:15 -e DOCSPELL_HEADER_VALUE="Selxndh-29mdl4m" --env-file=/mnt/user/appdata/flo-docspell/.env</ExtraParams>
+  <ExtraParams>--mac-address 02:42:E0:C1:01:15 -e DOCSPELL_HEADER_VALUE="S0m3T3xtY0uD0ntN33dT0R3m3mber" --env-file=/mnt/user/appdata/flo-docspell/.env</ExtraParams>
   <PostArgs/>
   <CPUset/>
   <DateInstalled>1608252005</DateInstalled>
