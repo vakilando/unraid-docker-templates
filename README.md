@@ -27,17 +27,17 @@ Den Containern müssen diverse Variablen mitgegeben werden und eine Konfiguratio
 In einem neuen Custom Docker Netzwerk werden alle Container erstellt.  
 Sie erhalten alle feste IP-Adressen (sowie Mac-Adressen).  
 MAC-Adressen-Vergabe ist keine Pflicht, hilft aber ggf. bei Verwendung einer Firewall, wenn nach IP- und/oder MAC-Adressen gefiltern werden soll.  
-Momentan werden auch die Container für Postgresql und Solr nur für Docspell genutzt. Natürlich können diese auch für andere Docker/Anwendungen noch zur Verfügung gestellt werden.
+Momentan werden auch die Container für Postgresql und Solr von mir nur für Docspell genutzt. Natürlich können diese auch für andere Docker/Anwendungen noch zur Verfügung gestellt werden.
 
 ### Vorgehen
 
-1. ein eigenes Docspell Docker Netzwerk zu erstellen:  
+1. ein eigenes Docspell Docker Netzwerk erstellen:  
    `# docker network create --driver=bridge --subnet=192.168.3.0/25 --gateway=192.168.3.1  custnet-docspell`  
 
 2. Verzeichnis "`docspell`" unter "`appdata`" anlegen  
    Verzeichnis "`docspell/opt`" unter "`appdata`" anlegen  
 
-3. Konfigurationsdatei "`docspell.conf`" in "`/docspell/opt`" erstellen  
+3. Konfigurationsdatei "`docspell.conf`" in "`/docspell/opt`" anlegen  
    Es kann die originale Datei von github genommen werden (<https://github.com/eikek/docspell/blob/master/docker/docspell.conf>)  
      
    Ich habe folgende Änderungen vorgenommen:  
