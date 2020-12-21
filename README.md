@@ -105,22 +105,34 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
 
 6. **Container einrichten**  
    In Unraid unter "_Docker_" unten auf "**ADD CONTAINER**" klicken und los geht's  
+   <br>
    1. **postgres**   
-      
+      Ich verwende Postgresql aus dem original Repository  
+      Repository: postgres:11.7  
+      Registry: https://hub.docker.com/\_/postgres/  
+      Support: https://hub.docker.com/\_/postgres/  
+
+      <br>
+
       Feld | Wert  (anzupassen!)  
       ---------|----------
        Repository: | postgres:11.7
        Network Type: | custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
+       Extra Parameters |--hostname db
        POSTGRES_PASSWORD | somesafepassword
        POSTGRES_USER | dbuser
        POSTGRES_DB | dbname
        Database Storage Path | /mnt/cache/appdata/postgres/
        Web Interface Port | 5432
-   <br>    
+      <br>    
 
-   2. **vakilando-docspell-solr**   
-      
+   2. **solr**   
+      Ich verwende Solr aus dem Repository "_A75G's Repository_"  
+      Docker: <https://hub.docker.com/r/bitnami/solr/>  
+      Support: https://forums.unraid.net/topic/89502-support-a75g-repo/  
+      Project: https://lucene.apache.org/solr/  
+
       Feld | Wert  (anzupassen!)  
       ---------|----------
        Repository: | bitnami/solr:8
@@ -130,7 +142,7 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
        Appdata: | z.B. /mnt/user/appdata/docspell/solr_data
        SOLR_PORT_NUMBER: | 8983
        SOLR_CORE: | my_core
-   <br>    
+      <br>    
    
    3. **vakilando-docspell-consumedir**  
       
@@ -148,7 +160,7 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
        DB_NAME | dbname  
        DB_USER | dbuser  
        DB_PASS | somesafepassword  
-   <br>    
+      <br>    
    
    4. **vakilando-docspell-joex**  
       
@@ -167,7 +179,7 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
        DB_NAME | dbname  
        DB_USER | dbuser  
        DB_PASS | somesafepassword  
-   <br>    
+      <br>    
    
    5. **vakilando-docspell-restserver**
       Feld | Wert 
@@ -185,7 +197,7 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
        DB_NAME | dbname  
        DB_USER | dbuser  
        DB_PASS | somesafepassword  
-   <br>    
+      <br>    
 
 7. **Die Reihenfolge in der die Container starten ist wichtig!**  
    Daher ist diese nach der Installation durch verschieben mit der Maus ggf. zu korrigieren:  
