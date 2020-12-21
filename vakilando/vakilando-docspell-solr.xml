@@ -52,7 +52,7 @@
   </Environment>
   <Labels/>
   <Config Name="Port" Target="8983" Default="8983" Mode="tcp" Description="Port" Type="Port" Display="always" Required="true" Mask="false">8983</Config>
-  <Config Name="Appdata" Target="/bitnami" Default="/mnt/user/appdata/solr/" Mode="rw" Description="Appdata" Type="Path" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Appdata" Target="/bitnami" Default="" Mode="rw" Description="Appdata" Type="Path" Display="always" Required="true" Mask="false"></Config>
   <Config Name="SOLR_PORT_NUMBER" Target="SOLR_PORT_NUMBER" Default="8983" Mode="" Description="Port used by Solr server. Default: 8983" Type="Variable" Display="always" Required="true" Mask="false">8983</Config>
   <Config Name="SOLR_CORE" Target="SOLR_CORE" Default="my_core" Mode="" Description="Core name to create at first run." Type="Variable" Display="always" Required="true" Mask="false">my_core</Config>
 </Container>
