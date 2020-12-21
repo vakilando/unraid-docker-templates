@@ -1,27 +1,18 @@
-# Unraid Docker Templates for Docspell
+# Installation von Docspell unter Unraid mit Docker
 
-- [Unraid Docker Templates for Docspell](#unraid-docker-templates-for-docspell)
-- [Installation von Docspell unter Unraid](#installation-von-docspell-unter-unraid)
-  - [Zwei mögliche Lösungen:](#zwei-mögliche-lösungen)
+- [Installation von Docspell unter Unraid mit Docker](#installation-von-docspell-unter-unraid-mit-docker)
+  - [Zwei mögliche Wege:](#zwei-mögliche-wege)
   - [Variante 1: Custom Docker Netzwerk](#variante-1-custom-docker-netzwerk)
   - [Variante 2: VLAN](#variante-2-vlan)
   - [Vorarbeiten vor der Containererstellung](#vorarbeiten-vor-der-containererstellung)
   - [## Inhalt der .env-Datei](#-inhalt-der-env-datei)
   - [Container Variablen](#container-variablen)
 
-----
-
 <br>
 
-**Attention**: this is a personal setup and it will not run "out of the box" on your machine.....  
-**Achtung**: dies ist ein perönliches Seup und wird nicht "out of the box" auf deiner Maschine laufen
+---
 
 <br>
-
------------
-
-
-# Installation von Docspell unter Unraid
 
 Docspell ist ein Dokumentenmanagementsystem (DMS) wie z.B. auch Teedy, Mayan, Paperless, Perpermerge, ...   
 Nach langem hin-und-her-testen, habe ich mich für Docspell entschieden.  
@@ -36,7 +27,7 @@ Dokumentation/Quellen für Docspell:
 
 <br>  
 
-## Zwei mögliche Lösungen:
+## Zwei mögliche Wege:
 -   **Custom Docker Netzwerk**  
 _Vorteil_: Die Kommunikation zwischen den Containern kann über deren Namen erfolgen (siehe z.B. unten bei "_docspell.conf_").
 -   **VLAN**  
