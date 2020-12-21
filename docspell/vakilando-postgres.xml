@@ -14,7 +14,7 @@
   <WebUI/>
   <TemplateURL/>
   <Icon>/plugins/dynamix.docker.manager/images/question.png</Icon>
-  <ExtraParams>--mac-address 02:42:E0:C1:01:18 --hostname db -e POSTGRES_PASSWORD=meinsicherespwd -e POSTGRES_USER=dbuser -e POSTGRES_DB=dbname</ExtraParams>
+  <ExtraParams>--hostname db</ExtraParams>
   <PostArgs/>
   <CPUset/>
   <DateInstalled>1608251517</DateInstalled>
