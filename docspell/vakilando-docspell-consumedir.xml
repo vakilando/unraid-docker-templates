@@ -75,7 +75,7 @@
     </Variable>
   </Environment>
   <Labels/>
-  <Config Name="/opt/docs" Target="/opt/docs" Default="" Mode="rw" Description="Container Path: /opt/docs" Type="Path" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="consumedir" Target="/opt/docs" Default="" Mode="rw" Description="Container Path: /opt/docs" Type="Path" Display="always" Required="true" Mask="false"></Config>
   <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="" Description="TZ=Europe/Berlin&#13;&#10;Timezone to set" Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
   <Config Name="DOCSPELL_HEADER_VALUE" Target="DOCSPELL_HEADER_VALUE" Default="SomeRandomString" Mode="" Description="DOCSPELL_HEADER_VALUE=SomeRandomString&#13;&#10;defines a secret that is shared between some containers. Please see the consumedir.sh docs for additional info.&#13;&#10;" Type="Variable" Display="always" Required="true" Mask="false">SomeRandomString</Config>
   <Config Name="DB_TYPE" Target="DB_TYPE" Default="postgresql" Mode="" Description="DB_TYPE=postgresql&#13;&#10; type of database to use (postgresql, mariadb, h2)&#13;&#10;You need an allready running database server&#13;&#10;" Type="Variable" Display="always" Required="true" Mask="false">postgresql</Config>
