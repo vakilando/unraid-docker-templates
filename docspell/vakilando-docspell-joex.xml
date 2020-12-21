@@ -14,7 +14,7 @@
   <WebUI>http://[IP]:[PORT:7878]</WebUI>
   <TemplateURL/>
   <Icon>/plugins/dynamix.docker.manager/images/question.png</Icon>
-  <ExtraParams>--mac-address 02:42:E0:C1:01:16</ExtraParams>
+  <ExtraParams></ExtraParams>
   <PostArgs/>
   <CPUset/>
   <DateInstalled>1608500428</DateInstalled>
