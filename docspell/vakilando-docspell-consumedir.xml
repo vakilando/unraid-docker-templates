@@ -12,8 +12,8 @@
   <Overview>Docker image for Docspell Consumedir. This Container watches a directory (configured below) and uploads all incoming files to Docspell. The script can watch directories recursively and can skip files already uploaded, so you can organize the files as you want in there (rename, move etc).  https://github.com/eikek/docspell   Converted By Community Applications   Always verify this template (and values) against the dockerhub support page for the container</Overview>
   <Category>Productivity:</Category>
   <WebUI>http://[IP]:[PORT:7878]</WebUI>
-  <TemplateURL/>https://raw.githubusercontent.com/vakilando/unraid-docker-templates/main/docspell/vakilando-docspell-consumedir.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/vakilando/unraid-docker-templates/main/docspell/docspell-logo.png</Icon>
+  <TemplateURL/>https://raw.githubusercontent.com/vakilando/unraid-docker-templates/master/docspell/vakilando-docspell-consumedir.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/vakilando/unraid-docker-templates/master/docspell/docspell-logo.png</Icon>
   <ExtraParams></ExtraParams>
   <PostArgs/>
   <CPUset/>
