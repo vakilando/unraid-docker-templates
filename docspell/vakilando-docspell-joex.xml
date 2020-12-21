@@ -9,7 +9,7 @@
   <Privileged>false</Privileged>
   <Support>https://hub.docker.com/r/eikek0/docspell/</Support>
   <Project/>
-  <Overview>Docker image for Docspell. https://github.com/eikek/docspell   Converted By Community Applications   Always verify this template (and values) against the dockerhub support page for the container</Overview>
+  <Overview>JOEX: This Docker image belongs to a set of images needed to run Docspell on Unraid. https://github.com/eikek/docspell   Converted By Community Applications   Always verify this template (and values) against the dockerhub support page for the container</Overview>
   <Category>Productivity:</Category>
   <WebUI>http://[IP]:[PORT:7878]</WebUI>
   <TemplateURL/>https://raw.githubusercontent.com/vakilando/unraid-docker-templates/master/docspell/vakilando-docspell-joex.xml</TemplateURL>
