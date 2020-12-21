@@ -14,7 +14,7 @@
   <WebUI>http://[IP]:[PORT:8983]</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/A75G/docker-templates/master/templates/solr.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/A75G/docker-templates/master/templates/icons/solr.png</Icon>
-  <ExtraParams>--mac-address 02:42:E0:C1:01:19</ExtraParams>
+  <ExtraParams>--mac-address 02:42:E0:C1:01:19 --health-cmd='["CMD", "curl", "f", "http:// 192.168.15.102:8983/solr/docspell/admin/ping"]' --health-timeout=10s --health-retries=2 --health-interval=1m --health-start-period=30s</ExtraParams>
   <PostArgs/>
   <CPUset/>
   <DateInstalled>1608222558</DateInstalled>
