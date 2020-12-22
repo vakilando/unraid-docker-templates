@@ -5,11 +5,12 @@
   - [Variante 1: Custom Docker Netzwerk](#variante-1-custom-docker-netzwerk)
   - [Variante 2: VLAN](#variante-2-vlan)
   - [Vorarbeiten vor der Containererstellung](#vorarbeiten-vor-der-containererstellung)
+- [Docspell installation in Unraid with Docker](#docspell-installation-in-unraid-with-docker)
   - [Two possible ways to achieve that:](#two-possible-ways-to-achieve-that)
   - [Variation 1: Custom Docker Network](#variation-1-custom-docker-network)
   - [Variation 2: VLAN](#variation-2-vlan)
   - [Todo before creating the containers](#todo-before-creating-the-containers)
-  - [## Inhalt der .env-Datei <br> Contents of the .env file](#-inhalt-der-env-datei--contents-of-the-env-file)
+  - [Inhalt der .env-Datei <br> Contents of the .env file](#inhalt-der-env-datei--contents-of-the-env-file)
   - [Genutzte Container Variablen in den Templates<br>Used container variables in the templates](#genutzte-container-variablen-in-den-templatesused-container-variables-in-the-templates)
 
 <br>
@@ -209,6 +210,9 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
 
 ------------  
 ------------  
+<br>
+
+# Docspell installation in Unraid with Docker
 
 Docspell is a personal document organizer / management system (DMS) like Teedy, Mayan, Paperless, Perpermerge,...  
 To run Docspell under unraid as docker, several containers have to be installed that have to communicate with each other.  
@@ -308,6 +312,7 @@ At the beginning I used a "_custom docker network_", but then switched to a VLAN
 <br>  
 
 ## Inhalt der .env-Datei <br> Contents of the .env file  
+
 ----
 TZ=Europe/Berlin  
 DOCSPELL_HEADER_VALUE=SomeRandomString  
