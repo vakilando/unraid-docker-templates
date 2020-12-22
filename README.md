@@ -8,7 +8,7 @@
   - [Two possible ways to achieve that:](#two-possible-ways-to-achieve-that)
   - [Variation 1: Custom Docker Network](#variation-1-custom-docker-network)
   - [Variation 2: VLAN](#variation-2-vlan)
-  - [Vorarbeiten vor der Containererstellung](#vorarbeiten-vor-der-containererstellung-1)
+  - [Todo before creating the containers](#todo-before-creating-the-containers)
   - [## Inhalt der .env-Datei <br> Contents of the .env file](#-inhalt-der-env-datei--contents-of-the-env-file)
   - [Genutzte Container Variablen in den Templates<br>Used container variables in the templates](#genutzte-container-variablen-in-den-templatesused-container-variables-in-the-templates)
 
@@ -252,7 +252,7 @@ At the beginning I used a "_custom docker network_", but then switched to a VLAN
 - The newly created VLAN (e.g. "_br0.5_") can now be selected when creating the container.
 <br>  
 
-## Vorarbeiten vor der Containererstellung
+## Todo before creating the containers
 
 1. **Create directories**  
    Create the directory "`docspell`" in "`appdata`".  
