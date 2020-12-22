@@ -40,6 +40,11 @@
   </Data>
   <Environment>
     <Variable>
+      <Value>Europe/Berlin</Value>
+      <Name>TZ</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
       <Value>SomeRandomString</Value>
       <Name>DOCSPELL_HEADER_VALUE</Name>
       <Mode/>
@@ -76,13 +81,14 @@
     </Variable>
   </Environment>
   <Labels/>
-  <Config Name="Host Port 1" Target="7880" Default="7880" Mode="tcp" Description="Container Port: " Type="Port" Display="always" Required="false" Mask="false">7880</Config>
+  <Config Name="Host Port" Target="7880" Default="7880" Mode="tcp" Description="Container Port: " Type="Port" Display="always" Required="true" Mask="false">7880</Config>
   <Config Name="docspell.conf" Target="/opt/docspell.conf" Default="" Mode="rw" Description="Container Path: /opt/docspell.conf" Type="Path" Display="always" Required="true" Mask="false"></Config>
-  <Config Name="DOCSPELL_HEADER_VALUE" Target="DOCSPELL_HEADER_VALUE" Default="SomeRandomString" Mode="" Description="DOCSPELL_HEADER_VALUE=" Type="Variable" Display="always" Required="true" Mask="false">SomeRandomString</Config>
-  <Config Name="DB_TYPE" Target="DB_TYPE" Default="postgresql" Mode="" Description="DB_TYPE=postgresql&#13;&#10;The database used" Type="Variable" Display="always" Required="true" Mask="false">postgresql</Config>
-  <Config Name="DB_HOST" Target="DB_HOST" Default="db" Mode="" Description="DB_HOST=db" Type="Variable" Display="always" Required="true" Mask="false">db</Config>
-  <Config Name="DB_PORT" Target="DB_PORT" Default="5432" Mode="" Description="DB_PORT=5432 (postgres)" Type="Variable" Display="always" Required="true" Mask="false">5432</Config>
-  <Config Name="DB_NAME" Target="DB_NAME" Default="dbname" Mode="" Description="DB_NAME=dbname" Type="Variable" Display="always" Required="true" Mask="false">dbname</Config>
-  <Config Name="DB_USER" Target="DB_USER" Default="dbuser" Mode="" Description="DB_USER=dbuser" Type="Variable" Display="always" Required="true" Mask="false">dbuser</Config>
-  <Config Name="DB_PASS" Target="DB_PASS" Default="somesafepassword" Mode="" Description="DB_PASS=somesafepassword" Type="Variable" Display="always" Required="true" Mask="false">somesafepassword</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="" Description="TZ=Europe/Berlin&#13;&#10;Timezone to set" Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <Config Name="DOCSPELL_HEADER_VALUE" Target="DOCSPELL_HEADER_VALUE" Default="SomeRandomString" Mode="" Description="DOCSPELL_HEADER_VALUE=" Type="Variable" Display="always" Required="false" Mask="false">SomeRandomString</Config>
+  <Config Name="DB_TYPE" Target="DB_TYPE" Default="postgresql" Mode="" Description="DB_TYPE=postgresql&#13;&#10;The database used" Type="Variable" Display="always" Required="false" Mask="false">postgresql</Config>
+  <Config Name="DB_HOST" Target="DB_HOST" Default="db" Mode="" Description="DB_HOST=db" Type="Variable" Display="always" Required="false" Mask="false">db</Config>
+  <Config Name="DB_PORT" Target="DB_PORT" Default="5432" Mode="" Description="DB_PORT=5432 (postgres)" Type="Variable" Display="always" Required="false" Mask="false">5432</Config>
+  <Config Name="DB_NAME" Target="DB_NAME" Default="dbname" Mode="" Description="DB_NAME=dbname" Type="Variable" Display="always" Required="false" Mask="false">dbname</Config>
+  <Config Name="DB_USER" Target="DB_USER" Default="dbuser" Mode="" Description="DB_USER=dbuser" Type="Variable" Display="always" Required="false" Mask="false">dbuser</Config>
+  <Config Name="DB_PASS" Target="DB_PASS" Default="somesafepassword" Mode="" Description="DB_PASS=somesafepassword" Type="Variable" Display="always" Required="false" Mask="false">somesafepassword</Config>
 </Container>

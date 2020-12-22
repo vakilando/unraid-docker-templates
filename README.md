@@ -6,7 +6,7 @@
   - [Variante 2: VLAN](#variante-2-vlan)
   - [Vorarbeiten vor der Containererstellung](#vorarbeiten-vor-der-containererstellung)
   - [## Inhalt der .env-Datei](#-inhalt-der-env-datei)
-  - [Container Variablen](#container-variablen)
+  - [Genutzte Container Variablen in den Templates](#genutzte-container-variablen-in-den-templates)
 
 <br>
 
@@ -193,7 +193,7 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
 7. **Die Reihenfolge in der die Container starten ist wichtig!**  
    Daher ist diese nach der Installation durch verschieben mit der Maus ggf. zu korrigieren:  
     1. postgres  
-    2. docspell-solr  
+    2. solr  
     3. docspell-consumedir  
     4. docspell-joex  
     5. docspell-restserver  
@@ -213,111 +213,97 @@ DB_PASS=dbpass
 
 <br>
 
-## Container Variablen
+## Genutzte Container Variablen in den Templates
 
-_______________________________________________________________  
-Variable 1  
-Config Type:    Variable  
-Name:           TZ  
-Key:            TZ  
-Value:          Europe/Berlin  
-Default Value:  Europe/Berlin  
-Description:    TZ=Europe/Berlin  
-                Timezone to set  
-Display:        Always  
-Required:       No  
-Password Mask:  No  
+_____________________
+
+Feld | Wert 
+---------|----------
+Name: | TZ  
+Key: | TZ  
+Value: | Europe/Berlin  
+Default Value: | Europe/Berlin  
+Description: | TZ=Europe/Berlin<br>Timezone to set  
+<br>  
+ 
+_____________________
+
+Feld | Wert 
+---------|----------
+Name: | DOCSPELL_HEADER_VALUE  
+Key: | DOCSPELL_HEADER_VALUE  
+Value: | SomeRandomString  
+Default Value: |   
+Description: | DOCSPELL_HEADER_VALUE=SomeRandomString<br> defines a secret that is shared between some containers.<br>Please see the consumedir.sh docs for additional info.  
+
+<br>  
   
   
-_______________________________________________________________  
-Variable 2  
-Config Type:    Variable  
-Name:           DOCSPELL_HEADER_VALUE  
-Key:            DOCSPELL_HEADER_VALUE  
-Value:          SomeRandomString  
-Default Value:  
-Description:    DOCSPELL_HEADER_VALUE=SomeRandomString  
-                defines a secret that is shared between some containers. Please see the consumedir.sh docs for additional info.  
-Display:        Always  
-Required:       Yes  
-Password Mask:  No  
+----  
   
-_______________________________________________________________  
-Variable 3  
-Config Type:    Variable  
-Name:           DB_TYPE  
-Key:            DB_TYPE  
-Value:          postgresql  
-Default Value:  postgresql  
-Description:    DB_TYPE=postgresql  
-                type of database to use (postgresql, mariadb, h2)  
-                You need an allready running database server  
-Display:        Always  
-Required:       Yes  
-Password Mask:  No  
+Feld | Wert  
+---------|----------
+Name: | DB_TYPE  
+Key: | DB_TYPE  
+Value: | postgresql  
+Default Value: | postgresql  
+Description: | DB_TYPE=postgresql<br>type of database to use (postgresql, mariadb, h2).<br>You need an allready running database server  
+<br>  
   
-_______________________________________________________________  
-Variable 4  
-Config Type:    Variable  
-Name:           DB_HOST  
-Key:            DB_HOST  
-Value:          db  
-Default Value:  db  
-Description:    DB_HOST=db  
-                database host name  
-Display:        Always  
-Required:       Yes  
-Password Mask:  No  
+_____________________
+
+Feld | Wert 
+---------|----------
+Name: | DB_HOST  
+Key: | DB_HOST  
+Value: | db  
+Default Value: | db  
+Description: | DB_HOST=db<br>database host name  
+<br>
   
-_______________________________________________________________  
-Variable 5  
-Config Type:    Variable  
-Name:           DB_PORT  
-Key:            DB_PORT  
-Value:          5432  
-Default Value:  5432  
-Description:    DB_PORT=5432  (postgresql)  
-                database host port  
-Display:        Always  
-Required:       Yes  
-Password Mask:  No  
-_______________________________________________________________  
-Variable 6  
-Config Type:    Variable  
-Name:           DB_NAME  
-Key:            DB_NAME  
-Value:          dbname  
-Default Value:  dbname  
-Description:    DB_NAME=dbname  
-                database name  
-                database will be created at first run  
-Display:        Always  
-Required:       Yes  
-Password Mask:  No  
-_______________________________________________________________  
-Variable 7  
-Config Type:    Variable  
-Name:           DB_USER  
-Key:            DB_USER  
-Value:          dbuser  
-Default Value:  dbuser  
-Description:    DB_USER=dbuser  
-                database user name  
-Display:        Always  
-Required:       Yes  
-Password Mask:  No  
-_______________________________________________________________  
-Variable 8  
-Config Type:    Variable  
-Name:           DB_PASS  
-Key:            DB_PASS  
-Value:          somesafepassword  
-Default Value:  somesafepassword  
-Description:    DB_PASS=somesafepassword  
-                database password  
-Display:        Always  
-Required:       Yes  
-Password Mask:  No  
+_____________________
+
+Feld | Wert 
+---------|----------
+Name: | DB_PORT  
+Key: | DB_PORT  
+Value: | 5432  
+Default Value: | 5432  
+Description: | DB_PORT=5432  (postgresql)<br>database host port  
+<br>
+
+_____________________
+
+Feld | Wert 
+---------|----------
+Name: | DB_NAME  
+Key: | DB_NAME  
+Value: | dbname  
+Default Value: | dbname  
+Description: | DB_NAME=dbname<br>database name. the database will be created at first run  
+<br>
+
+_____________________
+
+Feld | Wert 
+---------|----------
+Name: | DB_USER  
+Key: | DB_USER  
+Value: | dbuser  
+Default Value: | dbuser  
+Description: | DB_USER=dbuser<br>database user name  
+<br>
+
+
+_____________________
+
+Feld | Wert 
+---------|----------
+Name: | DB_PASS  
+Key: | DB_PASS  
+Value: | somesafepassword  
+Default Value: | somesafepassword  
+Description: | DB_PASS=somesafepassword<br>database password  
   
   
   

@@ -81,14 +81,14 @@
     </Variable>
   </Environment>
   <Labels/>
-  <Config Name="Host Port 1" Target="7878" Default="7878" Mode="tcp" Description="Container Port: " Type="Port" Display="always" Required="false" Mask="false">7878</Config>
+  <Config Name="Host Port" Target="7878" Default="7878" Mode="tcp" Description="Container Port: " Type="Port" Display="always" Required="true" Mask="false">7878</Config>
   <Config Name="docspell.conf" Target="/opt/docspell.conf" Default="" Mode="rw" Description="Container Path: /opt/docspell.conf" Type="Path" Display="always" Required="true" Mask="false"></Config>
   <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="" Description="TZ=Europe/Berlin&#13;&#10;Timezone to set" Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
-  <Config Name="DOCSPELL_HEADER_VALUE" Target="DOCSPELL_HEADER_VALUE" Default="" Mode="" Description="DOCSPELL_HEADER_VALUE=SomeRandomString&#13;&#10;defines a secret that is shared between some containers. Please see the consumedir.sh docs for additional info." Type="Variable" Display="always" Required="true" Mask="false">SomeRandomString</Config>
-  <Config Name="DB_TYPE" Target="DB_TYPE" Default="postgresql" Mode="" Description="DB_TYPE=postgresql&#13;&#10;type of database to use (postgresql, mariadb, h2)&#13;&#10;You need an allready running database server!" Type="Variable" Display="always" Required="true" Mask="false">postgresql</Config>
-  <Config Name="DB_HOST" Target="DB_HOST" Default="" Mode="" Description="DB_HOST=db&#13;&#10;database host name" Type="Variable" Display="always" Required="true" Mask="false">db</Config>
-  <Config Name="DB_PORT" Target="DB_PORT" Default="5432" Mode="" Description="DB_PORT=5432 (postgresql)&#13;&#10;database host port" Type="Variable" Display="always" Required="true" Mask="false">5432</Config>
-  <Config Name="DB_NAME" Target="DB_NAME" Default="dbname" Mode="" Description="DB_NAME=dbname&#13;&#10;database name&#13;&#10;database will be created at first run" Type="Variable" Display="always" Required="true" Mask="false">dbname</Config>
-  <Config Name="DB_USER" Target="DB_USER" Default="dbuser" Mode="" Description="DB_USER=dbuser&#13;&#10;database user name" Type="Variable" Display="always" Required="true" Mask="false">dbuser</Config>
-  <Config Name="DB_PASS" Target="DB_PASS" Default="somesafepassword" Mode="" Description="DB_PASS=somesafepassword&#13;&#10;database password" Type="Variable" Display="always" Required="true" Mask="false">somesafepassword</Config>
+  <Config Name="DOCSPELL_HEADER_VALUE" Target="DOCSPELL_HEADER_VALUE" Default="" Mode="" Description="DOCSPELL_HEADER_VALUE=SomeRandomString&#13;&#10;defines a secret that is shared between some containers. Please see the consumedir.sh docs for additional info." Type="Variable" Display="always" Required="false" Mask="false">SomeRandomString</Config>
+  <Config Name="DB_TYPE" Target="DB_TYPE" Default="postgresql" Mode="" Description="DB_TYPE=postgresql&#13;&#10;type of database to use (postgresql, mariadb, h2)&#13;&#10;You need an allready running database server!" Type="Variable" Display="always" Required="false" Mask="false">postgresql</Config>
+  <Config Name="DB_HOST" Target="DB_HOST" Default="" Mode="" Description="DB_HOST=db&#13;&#10;database host name" Type="Variable" Display="always" Required="false" Mask="false">db</Config>
+  <Config Name="DB_PORT" Target="DB_PORT" Default="5432" Mode="" Description="DB_PORT=5432 (postgresql)&#13;&#10;database host port" Type="Variable" Display="always" Required="false" Mask="false">5432</Config>
+  <Config Name="DB_NAME" Target="DB_NAME" Default="dbname" Mode="" Description="DB_NAME=dbname&#13;&#10;database name&#13;&#10;database will be created at first run" Type="Variable" Display="always" Required="false" Mask="false">dbname</Config>
+  <Config Name="DB_USER" Target="DB_USER" Default="dbuser" Mode="" Description="DB_USER=dbuser&#13;&#10;database user name" Type="Variable" Display="always" Required="false" Mask="false">dbuser</Config>
+  <Config Name="DB_PASS" Target="DB_PASS" Default="somesafepassword" Mode="" Description="DB_PASS=somesafepassword&#13;&#10;database password" Type="Variable" Display="always" Required="false" Mask="false">somesafepassword</Config>
 </Container>
