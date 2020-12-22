@@ -10,6 +10,7 @@
   - [Variation 1: Custom Docker Network](#variation-1-custom-docker-network)
   - [Variation 2: VLAN](#variation-2-vlan)
   - [Todo before creating the containers](#todo-before-creating-the-containers)
+- [Verwendete Variablen und Konfigurationsdateien<br>Used variables and configuration files](#verwendete-variablen-und-konfigurationsdateienused-variables-and-configuration-files)
   - [Inhalt der .env-Datei <br> Contents of the .env file](#inhalt-der-env-datei--contents-of-the-env-file)
   - [Genutzte Container Variablen in den Templates<br>Used container variables in the templates](#genutzte-container-variablen-in-den-templatesused-container-variables-in-the-templates)
 
@@ -305,11 +306,17 @@ At the beginning I used a "_custom docker network_", but then switched to a VLAN
     4. docspell-joex  
     5. docspell-restserver  
 
+<br>  
+<br>  
+
 -------------  
 -------------  
 
 <br>  
 <br>  
+
+# Verwendete Variablen und Konfigurationsdateien<br>Used variables and configuration files  
+
 
 ## Inhalt der .env-Datei <br> Contents of the .env file  
 
