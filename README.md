@@ -5,8 +5,12 @@
   - [Variante 1: Custom Docker Netzwerk](#variante-1-custom-docker-netzwerk)
   - [Variante 2: VLAN](#variante-2-vlan)
   - [Vorarbeiten vor der Containererstellung](#vorarbeiten-vor-der-containererstellung)
-  - [## Inhalt der .env-Datei](#-inhalt-der-env-datei)
-  - [Genutzte Container Variablen in den Templates](#genutzte-container-variablen-in-den-templates)
+  - [Two possible ways to achieve that:](#two-possible-ways-to-achieve-that)
+  - [Variation 1: Custom Docker Network](#variation-1-custom-docker-network)
+  - [Variation 2: VLAN](#variation-2-vlan)
+  - [Vorarbeiten vor der Containererstellung](#vorarbeiten-vor-der-containererstellung-1)
+  - [## Inhalt der .env-Datei <br> Contents of the .env file](#-inhalt-der-env-datei--contents-of-the-env-file)
+  - [Genutzte Container Variablen in den Templates<br>Used container variables in the templates](#genutzte-container-variablen-in-den-templatesused-container-variables-in-the-templates)
 
 <br>
 
@@ -60,11 +64,11 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
 
 ## Vorarbeiten vor der Containererstellung
 
-2. **Verzeichnisse anlegen**  
+1. **Verzeichnisse anlegen**  
    Verzeichnis "`docspell`" unter "`appdata`" anlegen.  
    Verzeichnis "`docspell/opt`" unter "`appdata`" anlegen.  
 
-3. **Konfigurationsdatei anlegen**  
+2. **Konfigurationsdatei anlegen**  
    "`docspell.conf`" in "`/docspell/opt`" anlegen.  
    Es kann die Datei von github genommen werden: <https://github.com/eikek/docspell/blob/master/docker/docspell.conf>  
      
@@ -79,7 +83,7 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
    - bei Verwendung eines _custom Docker Netzwerks_ sollte die Dockernamensauflösung funktionieren...  
    - da die Variablen in den Unraid Docker Templates enthalten sind sollten die Variablen hier funktionieren...  
 
-4. **Gemeinsam genutzte Variablen**  
+3. **Gemeinsam genutzte Variablen**  
    Die Docker Container benötigen gemeinsame Variablen (siehe "_docspell.conf_").  
    Die Variablen werden  
    - ENTWEDER einzeln im Telmplate angepasst und verwendet  
@@ -91,11 +95,13 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
         
       Die "`.env`"-Datei ist praktisch um Vorgaben zentral zu speichern, erfordert aber das Anlegen der Datei vor Erstellung der Docker  
 
-5. **Unraid Templates einbinden**  
+4. **Unraid Templates einbinden**  
    In Unraid unter "_Docker_" => "_Template Repositories_" (ganz unten) folgende URL eintragen und auf "_Save_" klicken: <https://github.com/vakilando/unraid-docker-templates>  
 
-6. **Container einrichten**  
-   In Unraid unter "_Docker_" unten auf "**ADD CONTAINER**" klicken und los geht's  
+5. **Container einrichten**  
+   In Unraid unter "_Docker_" unten auf "**ADD CONTAINER**" klicken.  
+   Wähle die Container "_vakilando-docspell-xxx_" aus  
+   Siehe unten für weitere Informationen bzgl. der Templates.     
    <br>
    1. **postgres**   
       Ich verwende Postgresql aus dem original Repository  
@@ -200,7 +206,108 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
 
 <br><br>
 
-## Inhalt der .env-Datei  
+
+------------  
+------------  
+
+Docspell is a personal document organizer / management system (DMS) like Teedy, Mayan, Paperless, Perpermerge,...  
+To run Docspell under unraid as docker, several containers have to be installed that have to communicate with each other.  
+Various variables and a configuration file must be given to the containers.
+
+Documentation/Sources for Docspell:  
+- https://hub.docker.com/r/eikek0/docspell/  
+- https://github.com/eikek/docspell
+- https://docspell.org/docs/
+
+
+<br>  
+
+## Two possible ways to achieve that:
+- **Custom Docker Network**  
+_Advantage_: The communication between the containers can take place via their names (see e.g. below under "_docspell.conf_").
+- **VLAN**  
+_Advantage_: Each container receives an IP from the VLAN, so you don't have to worry as much about any ports that may already be used (see below). In addition, each container can be better "controlled" via a firewall thanks to its own IP.
+    
+At the beginning I used a "_custom docker network_", but then switched to a VLAN in favor of the own IP addresses for each container.  
+<br>  
+
+
+## Variation 1: Custom Docker Network
+
+- In order for the network to be available when creating the container:  
+  In Unraid go to "_Settings_" => "_Docker_". Choose the item "_Preserve user defined networks_" and set it to "_Yes_" (Docker service must be terminated beforehand).
+- Now switch to the server console via SSH or the Unraid GUI.
+- Create a Custum Docker network:  
+  Simple: `docker network create dnet-docspell`  
+  Extended: `docker network create --driver = bridge --subnet = 192.168.3.0 / 25 --gateway = 192.168.3.1 dnet-docspell`  
+- The newly created custom network "_dnet-docspell_" can now be selected when creating the container.  
+
+<br>  
+
+## Variation 2: VLAN
+
+
+- To use VLANs the router / switch used must support VLANs!
+- In Unraid go to "_Settings_" => "_Network Settings_" => "_Enable VLANs_", set it to "_Yes_" and make the necessary settings (Docker and VM service must be terminated beforehand).
+- The newly created VLAN (e.g. "_br0.5_") can now be selected when creating the container.
+<br>  
+
+## Vorarbeiten vor der Containererstellung
+
+1. **Create directories**  
+   Create the directory "`docspell`" in "`appdata`".  
+   Create the directory "`docspell/opt`" in "`appdata`".  
+
+2. **Create configuration files**  
+   Create the file "`docspell.conf`" in "`/docspell/opt`".  
+   The file can be taken from github: <https://github.com/eikek/docspell/blob/master/docker/docspell.conf>
+     
+   I made the following changes:
+   - all docker names replaced by their IP address:  
+     e.g.: "`http://joex:7878`" => "`http://192.168.3.1:7878`"  
+   - replaced all variables with their values:  
+     e.g. "`jdbc:"\${DB_TYPE}"://"\${DB_HOST}":"\${DB_PORT}"/"\${DB_NAME}` => `"jdbc:postgresql://192.168.3.2:5432/dbname"`  
+       
+   I have NOT tested but:
+   - when using a _custom Docker network_ the Docker name resolution should work (no need to replace names by IP's)...
+   - since the variables are contained in the Unraid Docker templates, the variables should work here too (no need to replace them)...  
+  
+3. **Common used variables**  
+   The Docker containers need common variables (see "_docspell.conf_").  
+   The variables are  
+   - EITHER individually adapted and used in the telmplates  
+     (The variables are already specified and described there)
+   - OR specified via a central file under "_Extra Parameters_":  
+   "`--env-file=/mnt/user/appdata/docspell/.env`"  
+      The file can be taken from github: <https://github.com/eikek/docspell/blob/master/docker/.env>  
+      It is saved under "`../appdata/docspell`".  
+        
+      The "_.env_" file is useful for storing specifications centrally, but requires the file to be created before the Docker is created.  
+
+4. **Using the Unraid templates**  
+   In Unraid got to "_Docker_" => "_Template Repositories_" (at the bottom) and add this URL: <https://github.com/vakilando/unraid-docker-templates>  
+   Click "_Save_"
+
+5. **Install th containers**  
+   In Unraid go to "_Docker_" and at the bottom click on "**ADD CONTAINER**".  
+   Choose the Containers "_vakilando-docspell-xxx_"  
+   See above or beneath for more instructions concerning the templates..  
+   <br>
+
+6. **Change the start sequence of the containers!**  
+    1. postgres  
+    2. solr  
+    3. docspell-consumedir  
+    4. docspell-joex  
+    5. docspell-restserver  
+
+-------------  
+-------------  
+
+<br>  
+<br>  
+
+## Inhalt der .env-Datei <br> Contents of the .env file  
 ----
 TZ=Europe/Berlin  
 DOCSPELL_HEADER_VALUE=SomeRandomString  
@@ -213,7 +320,7 @@ DB_PASS=dbpass
 
 <br>
 
-## Genutzte Container Variablen in den Templates
+## Genutzte Container Variablen in den Templates<br>Used container variables in the templates
 
 _____________________
 
