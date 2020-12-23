@@ -9,7 +9,20 @@
   <Privileged>false</Privileged>
   <Support>https://hub.docker.com/r/eikek0/docspell/</Support>
   <Project/>
-  <Overview>Consumedir: This Docker image belongs to a set of images needed to run Docspell on Unraid. This Container watches a directory (configured below) and uploads all incoming files to Docspell. The script can watch directories recursively and can skip files already uploaded, so you can organize the files as you want in there (rename, move etc).  https://github.com/eikek/docspell   Converted By Community Applications   Always verify this template (and values) against the dockerhub support page for the container</Overview>
+  <Overview>
+    [b]Docspell-Consumedir[/b] (https://github.com/eikek/docspell)[br][br]
+    Docspell is a personal document organizer, a document management system (dms). [br][br]
+    Docspell needs a set of images to run:[br]
+    1. solr[br]
+    2. database (postgres, mysql, H2)[br]
+    3. docspell-consumedir[br]
+    4. docspell-joex[br]
+    5. docspell-restserver[br][br]
+    Install a solr and database image of your choice[br][br]
+    [b]This is part 3: docspell-consumedir[/b][br]
+    This Container watches a directory (configured below) and uploads all incoming files to Docspell.[br]
+    The script can watch directories recursively and can skip files already uploaded, so you can organize the files as you want in there (rename, move etc).  
+  </Overview>
   <Category>Productivity:</Category>
   <WebUI>http://[IP]:[PORT:7878]</WebUI>
   <TemplateURL/>https://raw.githubusercontent.com/vakilando/unraid-docker-templates/master/docspell/vakilando-docspell-consumedir.xml</TemplateURL>
