@@ -145,6 +145,7 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
        Fixed IP address:  | ...sofern gewünscht...
        Port: | **8983**
        Appdata: | z.B. /mnt/user/appdata/docspell/solr_data
+       SOLR_PORT_NUMBER: | **8983**
        SOLR_CORE: | **docspell**
       <br>    
    
