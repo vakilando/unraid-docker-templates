@@ -22,7 +22,8 @@ Docspell needs a set of images to run:&#xD;
 The REST server provides the Api and the web application.&#xD;
 The web application is a SPA written in Elm and is a client to the REST api.&#xD;
 All features are available via a http/rest api.&#xD;
-The rest server and the job executor can be started multiple times in order to scale out. It must be ensured, that all connect to the same database.</Overview>
+The rest server and the job executor can be started multiple times in order to scale out. It must be ensured, that all connect to the same database.&#xD;
+For installation instrustions on Unraid see: https://github.com/vakilando/unraid-docker-templates</Overview>
   <Category>Productivity:</Category>
   <WebUI>http://[IP]:[PORT:7880]</WebUI>
   <TemplateURL/>
@@ -46,7 +47,8 @@ Docspell needs a set of images to run:&#xD;
 The REST server provides the Api and the web application.&#xD;
 The web application is a SPA written in Elm and is a client to the REST api.&#xD;
 All features are available via a http/rest api.&#xD;
-The rest server and the job executor can be started multiple times in order to scale out. It must be ensured, that all connect to the same database.</Description>
+The rest server and the job executor can be started multiple times in order to scale out. It must be ensured, that all connect to the same database.&#xD;
+For installation instrustions on Unraid see: https://github.com/vakilando/unraid-docker-templates</Description>
   <Networking>
     <Mode>bridge</Mode>
     <Publish>
@@ -108,7 +110,7 @@ The rest server and the job executor can be started multiple times in order to s
   </Environment>
   <Labels/>
   <Config Name="Host Port 1" Target="7880" Default="7880" Mode="tcp" Description="Container Port: " Type="Port" Display="always" Required="false" Mask="false">7880</Config>
-  <Config Name="/opt/docspell.conf" Target="/opt/docspell.conf" Default="/opt/docspell.conf" Mode="rw" Description="Container Path: /opt/docspell.conf" Type="Path" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="/opt/docspell.conf" Target="/opt/docspell.conf" Default="" Mode="rw" Description="Container Path: /opt/docspell.conf" Type="Path" Display="always" Required="true" Mask="false"></Config>
   <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="" Description="Container Variable: TZ" Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
   <Config Name="DOCSPELL_HEADER_VALUE" Target="DOCSPELL_HEADER_VALUE" Default="" Mode="" Description="DOCSPELL_HEADER_VALUE=" Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Config Name="DB_TYPE" Target="DB_TYPE" Default="postgresql" Mode="" Description="DB_TYPE=postgresql&#13;&#10;The database used" Type="Variable" Display="always" Required="true" Mask="false">postgresql</Config>

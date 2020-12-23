@@ -20,7 +20,8 @@ Docspell needs a set of images to run:&#xD;
 4. docspell-restserver&#xD;
 &#xD;
 This Container watches a directory (configured below) and uploads all incoming files to Docspell.&#xD;
-The script can watch directories recursively and can skip files already uploaded, so you can organize the files as you want in there (rename, move etc). </Overview>
+The script can watch directories recursively and can skip files already uploaded, so you can organize the files as you want in there (rename, move etc).&#xD;
+For installation instrustions on Unraid see: https://github.com/vakilando/unraid-docker-templates </Overview>
   <Category>Productivity:</Category>
   <WebUI>http://[IP]:[PORT:7878]</WebUI>
   <TemplateURL/>
@@ -42,7 +43,8 @@ Docspell needs a set of images to run:&#xD;
 4. docspell-restserver&#xD;
 &#xD;
 This Container watches a directory (configured below) and uploads all incoming files to Docspell.&#xD;
-The script can watch directories recursively and can skip files already uploaded, so you can organize the files as you want in there (rename, move etc). </Description>
+The script can watch directories recursively and can skip files already uploaded, so you can organize the files as you want in there (rename, move etc).&#xD;
+For installation instrustions on Unraid see: https://github.com/vakilando/unraid-docker-templates </Description>
   <Networking>
     <Mode>bridge</Mode>
     <Publish/>
