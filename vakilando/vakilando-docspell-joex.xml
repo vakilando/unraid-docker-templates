@@ -9,21 +9,7 @@
   <Privileged>false</Privileged>
   <Support>https://hub.docker.com/r/eikek0/docspell/</Support>
   <Project/>
-  <Overview>
-    [b]Docspell-JOEX[/b] (https://github.com/eikek/docspell)[br][br]
-    Docspell is a personal document organizer, a document management system (dms). [br][br]
-    Docspell needs a set of images to run:[br]
-    1. solr[br]
-    2. database (postgres, mysql, H2)[br]
-    3. docspell-consumedir[br]
-    4. docspell-joex[br]
-    5. docspell-restserver[br][br]
-    Install a solr and database image of your choice[br][br]
-    [b]This is part 4: docspell-joex[/b][br]
-    Joex is short for Job Executor and it is the component managing long running tasks in docspell.[br]
-    One of these long running tasks is the file processing task.[br]
-    The rest server and the job executor can be started multiple times in order to scale out. It must be ensured, that all connect to the same database.
-  </Overview>
+  <Overview></Overview>
   <Category>Productivity:</Category>
   <WebUI>http://[IP]:[PORT:7878]</WebUI>
   <TemplateURL/>https://raw.githubusercontent.com/vakilando/unraid-docker-templates/master/docspell/vakilando-docspell-joex.xml</TemplateURL>
