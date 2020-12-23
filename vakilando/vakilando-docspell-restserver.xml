@@ -9,7 +9,21 @@
   <Privileged>false</Privileged>
   <Support>https://hub.docker.com/r/eikek0/docspell/</Support>
   <Project/>
-  <Overview></Overview>
+  <Overview>Docspell is a personal document organizer (https://github.com/eikek/docspell).&#xD;
+&#xD;
+Part 4: Docspell-REST-Server&#xD; 
+&#xD;
+Docspell needs a set of images to run:&#xD;
+1. solr and a database (install a solr and database image of your choice)&#xD;
+2. docspell-consumedir&#xD;
+3. docspell-joex&#xD;
+4. docspell-restserver&#xD;
+&#xD;
+The REST server provides the Api and the web application.&#xD;
+The web application is a SPA written in Elm and is a client to the REST api.&#xD;
+All features are available via a http/rest api.&#xD;
+The rest server and the job executor can be started multiple times in order to scale out. It must be ensured, that all connect to the same database.
+</Overview>
   <Category>Productivity:</Category>
   <WebUI>http://[IP]:[PORT:7880]</WebUI>
   <TemplateURL/>https://raw.githubusercontent.com/vakilando/unraid-docker-templates/master/docspell/vakilando-docspell-restserver.xml</TemplateURL>

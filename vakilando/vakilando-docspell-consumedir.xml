@@ -9,7 +9,18 @@
   <Privileged>false</Privileged>
   <Support>https://hub.docker.com/r/eikek0/docspell/</Support>
   <Project/>
-  <Overview></Overview>
+  <Overview>Docspell is a personal document organizer (https://github.com/eikek/docspell).&#xD;
+&#xD;
+Part 3: Docspell-Consumedir &#xD;
+&#xD;
+Docspell needs a set of images to run:&#xD;
+1. solr and a database (install a solr and database image of your choice)&#xD;
+2. docspell-consumedir&#xD;
+3. docspell-joex&#xD;
+4. docspell-restserver&#xD;
+&#xD;
+This Container watches a directory (configured below) and uploads all incoming files to Docspell.&#xD;
+The script can watch directories recursively and can skip files already uploaded, so you can organize the files as you want in there (rename, move etc). </Overview>
   <Category>Productivity:</Category>
   <WebUI>http://[IP]:[PORT:7878]</WebUI>
   <TemplateURL/>https://raw.githubusercontent.com/vakilando/unraid-docker-templates/master/docspell/vakilando-docspell-consumedir.xml</TemplateURL>
