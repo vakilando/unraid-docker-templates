@@ -89,14 +89,14 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
 3. **Gemeinsam genutzte Variablen**  
    Die Docker Container benötigen gemeinsame Variablen (siehe "_docspell.conf_").  
    Die Variablen werden  
-   - ENTWEDER einzeln im Telmplate angepasst und verwendet  
-     (Die Variablen sind dort bereits angegeben und beschrieben)
-   - ODER über eine zentrale Datei unter "_Extra Parameters_" angegeben:  
+   - **ENTWEDER** in jedem Telmplate angepasst  
+     (Die Variablen sind dort vordefiniert und beschrieben)
+   - **ODER** über eine zentrale Datei unter "_Extra Parameters_" angegeben:  
    "`--env-file=/mnt/user/appdata/docspell/.env`"  
       Es kann die Datei von github genommen werden: <https://github.com/eikek/docspell/blob/master/docker/.env>  
       Sie wird unter "`../appdata/docspell`" gespeichert.  
         
-      Die "`.env`"-Datei ist praktisch um Vorgaben zentral zu speichern, erfordert aber das Anlegen der Datei vor Erstellung der Docker  
+      Die "`.env`"-Datei ist praktisch um Vorgaben zentral zu speichern, erfordert aber das Anlegen der Datei _vor_ Erstellung der Docker.  
 
 4. **Unraid Templates einbinden**  
    In Unraid unter "_Docker_" => "_Template Repositories_" (ganz unten) folgende URL eintragen und auf "_Save_" klicken: <https://github.com/vakilando/unraid-docker-templates>  
@@ -109,8 +109,10 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
    1. **postgres**   
       Ich verwende Postgresql aus dem original Repository  
       Repository: postgres:11.7  
-      Registry: https://hub.docker.com/\_/postgres/  
-      Support: https://hub.docker.com/\_/postgres/  
+      Docker: https://hub.docker.com/\_/postgres/  
+        
+      _**Wichtige Einstellungen:** sind **fett** markiert._  
+      Sie müssen bei jedem Container identisch sein und mit Angaben in der "_docspell.conf_" übereinstimmen.
 
       <br>
 
@@ -119,12 +121,12 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
        Repository: | postgres:11.7
        Network Type: | custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
-       Extra Parameters |--hostname db
-       POSTGRES_PASSWORD | somesafepassword
-       POSTGRES_USER | dbuser
-       POSTGRES_DB | dbname
+       Extra Parameters |**--hostname db**
+       POSTGRES_PASSWORD | **somesafepassword**
+       POSTGRES_USER | **dbuser**
+       POSTGRES_DB | **dbname**
        Database Storage Path | /mnt/cache/appdata/postgres/
-       Web Interface Port | 5432
+       Web Interface Port | **5432**
       <br>    
 
    2. **solr**   
@@ -132,20 +134,27 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
       Docker: <https://hub.docker.com/r/bitnami/solr/>  
       Support: https://forums.unraid.net/topic/89502-support-a75g-repo/  
       Project: https://lucene.apache.org/solr/  
+        
+      _**Wichtige Einstellungen** sind **fett** markiert._  
+      Die Variable "_SOLR_CORE_" wird in der "_docspell.conf_" verwendet (solr URL).
 
       Feld | Wert  (anzupassen!)  
       ---------|----------
        Repository: | bitnami/solr:8
        Network Type: | custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
-       Port: | 8983
+       Port: | **8983**
        Appdata: | z.B. /mnt/user/appdata/docspell/solr_data
-       SOLR_PORT_NUMBER: | 8983
-       SOLR_CORE: | my_core
+       SOLR_CORE: | **docspell**
       <br>    
    
    3. **vakilando-docspell-consumedir**  
       
+      _**Wichtige Einstellungen:** sind **fett** markiert._  
+      Sie müssen bei jedem Container identisch sein und mit Angaben in der "_docspell.conf_" übereinstimmen.
+        
+      <br>
+        
       Feld | Wert (anzupassen!)  
       ---------|----------
        Repository: | eikek0/docspell:consumedir-LATEST
@@ -153,53 +162,64 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
        Fixed IP address:  | ...sofern gewünscht...
        Consumedir: | z.B. /mnt/user/appdata/docspell/docs
        TZ | Europe/Berlin
-       DOCSPELL_HEADER_VALUE | SomeRandomString  
+       DOCSPELL_HEADER_VALUE | **SomeRandomString**  
        DB_TYPE | postgresql
-       DB_HOST | Name des DB-Containers z.B. "db"<br> oder IP-Adresse "192.168.3.2"
-       DB_PORT | 5432
-       DB_NAME | dbname  
-       DB_USER | dbuser  
-       DB_PASS | somesafepassword  
+       DB_HOST | Name des DB-Containers z.B. "**db**"<br> oder IP-Adresse "**192.168.3.2**"
+       DB_PORT | **5432**
+       DB_NAME | **dbname**  
+       DB_USER | **dbuser**  
+       DB_PASS | **somesafepassword**  
       <br>    
    
    4. **vakilando-docspell-joex**  
       
+      _**Wichtige Einstellungen:** sind **fett** markiert._  
+      Sie müssen bei jedem Container identisch sein und mit Angaben in der "_docspell.conf_" übereinstimmen.
+        
+      <br>
+        
       Feld | Wert 
       ---------|----------
        Repository: | eikek0/docspell:joex-LATEST
        Network Type: | custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
-       Host Port 1: | 7878
+       Host Port 1: | **7878**
        docspell.conf | /mnt/user/appdata/docspell/opt/docspell.conf<br>(_muss vorhanden sein!!_)
        TZ | Europe/Berlin
-       DOCSPELL_HEADER_VALUE | SomeRandomString  
+       DOCSPELL_HEADER_VALUE | **SomeRandomString**  
        DB_TYPE | postgresql
-       DB_HOST | Name des DB-Containers z.B. "db"<br> oder IP-Adresse "192.168.3.2"
-       DB_PORT | 5432
-       DB_NAME | dbname  
-       DB_USER | dbuser  
-       DB_PASS | somesafepassword  
+       DB_HOST | Name des DB-Containers z.B. "**db**"<br> oder IP-Adresse "**192.168.3.2**"
+       DB_PORT | **5432**
+       DB_NAME | **dbname**  
+       DB_USER | **dbuser**  
+       DB_PASS | **somesafepassword**  
       <br>    
    
    5. **vakilando-docspell-restserver**
+
+      _**Wichtige Einstellungen:** sind **fett** markiert._  
+      Sie müssen bei jedem Container identisch sein und mit Angaben in der "_docspell.conf_" übereinstimmen.
+        
+      <br>
+        
       Feld | Wert 
       ---------|----------
        Repository: | eikek0/docspell:restserver-LATEST
        Network Type: | custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
-       Host Port 1: | 7880
+       Host Port 1: | **7880**
        docspell.conf | /mnt/user/appdata/docspell/opt/docspell.conf<br>(_muss vorhanden sein!!_)
        TZ | Europe/Berlin
-       DOCSPELL_HEADER_VALUE | SomeRandomString  
+       DOCSPELL_HEADER_VALUE | **SomeRandomString**  
        DB_TYPE | postgresql
-       DB_HOST | Name des DB-Containers z.B. "db"<br> oder IP-Adresse "192.168.3.2"
-       DB_PORT | 5432
-       DB_NAME | dbname  
-       DB_USER | dbuser  
-       DB_PASS | somesafepassword  
+       DB_HOST | Name des DB-Containers z.B. "**db**"<br> oder IP-Adresse "**192.168.3.2**"
+       DB_PORT | **5432**
+       DB_NAME | **dbname**  
+       DB_USER | **dbuser**  
+       DB_PASS | **somesafepassword**  
       <br>    
 
-7. **Die Reihenfolge in der die Container starten ist wichtig!**  
+6. **Die Reihenfolge in der die Container starten ist wichtig!**  
    Daher ist diese nach der Installation durch verschieben mit der Maus ggf. zu korrigieren:  
     1. postgres  
     2. solr  
@@ -378,7 +398,7 @@ Name: | DB_HOST
 Key: | DB_HOST  
 Value: | db  
 Default Value: | db  
-Description: | DB_HOST=db<br>database host name  
+Description: | DB_HOST=db<br>database host name or IP 
 <br>
   
 _____________________
