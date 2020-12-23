@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Container version="2">
   <Name>docspell-restserver</Name>
   <Repository>eikek0/docspell:restserver-LATEST</Repository>
