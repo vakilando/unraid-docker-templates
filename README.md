@@ -149,30 +149,7 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
        SOLR_CORE: | **docspell**
       <br>    
    
-   3. **vakilando-docspell-consumedir**  
-      
-      _**Wichtige Einstellungen:** sind **fett** markiert._  
-      Sie müssen bei jedem Container identisch sein und mit Angaben in der "_docspell.conf_" übereinstimmen.
-        
-      <br>
-        
-      Feld | Wert (anzupassen!)  
-      ---------|----------
-       Repository: | eikek0/docspell:consumedir-LATEST
-       Network Type: | custom-network oder VLAN wählen
-       Fixed IP address:  | ...sofern gewünscht...
-       Consumedir: | z.B. /mnt/user/appdata/docspell/docs
-       TZ | Europe/Berlin
-       DOCSPELL_HEADER_VALUE | **SomeRandomString**  
-       DB_TYPE | postgresql
-       DB_HOST | Name des DB-Containers z.B. "**db**"<br> oder IP-Adresse "**192.168.3.2**"
-       DB_PORT | **5432**
-       DB_NAME | **dbname**  
-       DB_USER | **dbuser**  
-       DB_PASS | **somesafepassword**  
-      <br>    
-   
-   4. **vakilando-docspell-joex**  
+   3. **vakilando-docspell-joex**  
       
       _**Wichtige Einstellungen:** sind **fett** markiert._  
       Sie müssen bei jedem Container identisch sein und mit Angaben in der "_docspell.conf_" übereinstimmen.
@@ -196,7 +173,7 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
        DB_PASS | **somesafepassword**  
       <br>    
    
-   5. **vakilando-docspell-restserver**
+   4. **vakilando-docspell-restserver**
 
       _**Wichtige Einstellungen:** sind **fett** markiert._  
       Sie müssen bei jedem Container identisch sein und mit Angaben in der "_docspell.conf_" übereinstimmen.
@@ -220,13 +197,37 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
        DB_PASS | **somesafepassword**  
       <br>    
 
+   5. **vakilando-docspell-consumedir**  
+      
+      _**Wichtige Einstellungen:** sind **fett** markiert._  
+      Sie müssen bei jedem Container identisch sein und mit Angaben in der "_docspell.conf_" übereinstimmen.
+        
+      <br>
+        
+      Feld | Wert (anzupassen!)  
+      ---------|----------
+       Repository: | eikek0/docspell:consumedir-LATEST
+       Network Type: | custom-network oder VLAN wählen
+       Fixed IP address:  | ...sofern gewünscht...
+       Consumedir: | z.B. /mnt/user/appdata/docspell/docs
+       TZ | Europe/Berlin
+       DOCSPELL_HEADER_VALUE | **SomeRandomString**  
+       DB_TYPE | postgresql
+       DB_HOST | Name des DB-Containers z.B. "**db**"<br> oder IP-Adresse "**192.168.3.2**"
+       DB_PORT | **5432**
+       DB_NAME | **dbname**  
+       DB_USER | **dbuser**  
+       DB_PASS | **somesafepassword**  
+       CONSUMEDIR_INTEGRATION | **y**
+      <br>    
+
 6. **Die Reihenfolge in der die Container starten ist wichtig!**  
    Daher ist diese nach der Installation durch verschieben mit der Maus ggf. zu korrigieren:  
     1. postgres  
     2. solr  
-    3. docspell-consumedir  
-    4. docspell-joex  
-    5. docspell-restserver  
+    3. docspell-joex  
+    4. docspell-restserver  
+    5. docspell-consumedir  
 
 <br><br>
 
@@ -324,9 +325,9 @@ At the beginning I used a "_custom docker network_", but then switched to a VLAN
 6. **Change the start sequence of the containers!**  
     1. postgres  
     2. solr  
-    3. docspell-consumedir  
-    4. docspell-joex  
-    5. docspell-restserver  
+    3. docspell-joex  
+    4. docspell-restserver  
+    5. docspell-consumedir  
 
 <br>  
 <br>  
