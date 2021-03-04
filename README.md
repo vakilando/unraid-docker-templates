@@ -23,6 +23,9 @@
 
 <br>
 
+_Info: Diese Dokumentation is getestet bis Version 0.20.0 von Docspell_  
+ 
+  
 Docspell ist ein Dokumentenmanagementsystem (DMS) wie z.B. auch Teedy, Mayan, Paperless, Perpermerge, ...   
 Nach langem hin-und-her-testen, habe ich mich für Docspell entschieden.  
 Um Docspell unter Unraid zu nutzen müssen mehrere Container installiert werden, die miteinander kommunizieren müssen.
@@ -253,6 +256,8 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
 
 # Docspell installation in Unraid with Docker
 
+_Info: This documentation is tested up to version 0.20.0 of docspell_  
+ 
 Docspell is a personal document organizer / management system (DMS) like Teedy, Mayan, Paperless, Perpermerge,...  
 To run Docspell under unraid as docker, several containers have to be installed that have to communicate with each other.  
 Various variables and a configuration file must be given to the containers.
