@@ -97,6 +97,11 @@ For installation instrustions on Unraid see: https://github.com/vakilando/unraid
       <Name>DB_PASS</Name>
       <Mode/>
     </Variable>
+    <Variable>
+      <Value>y</Value>
+      <Name>CONSUMEDIR_INTEGRATION</Name>
+      <Mode/>
+    </Variable>
   </Environment>
   <Labels/>
   <Config Name="/opt/docs" Target="/opt/docs" Default="" Mode="rw" Description="Container Path: /opt/docs" Type="Path" Display="always" Required="true" Mask="false"></Config>
@@ -108,4 +113,5 @@ For installation instrustions on Unraid see: https://github.com/vakilando/unraid
   <Config Name="DB_NAME" Target="DB_NAME" Default="dbname" Mode="" Description="DB_NAME=dbname&#13;&#10;database name&#13;&#10;database will be created at first run" Type="Variable" Display="always" Required="true" Mask="false">dbname</Config>
   <Config Name="DB_USER" Target="DB_USER" Default="dbuser" Mode="" Description="DB_USER=dbuser&#13;&#10;database user name" Type="Variable" Display="always" Required="true" Mask="false">dbuser</Config>
   <Config Name="DB_PASS" Target="DB_PASS" Default="" Mode="" Description="DB_PASS=somesafepassword&#13;&#10;database password" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="CONSUMEDIR_INTEGRATION" Target="CONSUMEDIR_INTEGRATION" Default="y" Mode="" Description="CONSUMEDIR_INTEGRATION=y" Type="Variable" Display="always" Required="false" Mask="false">y</Config>
 </Container>
