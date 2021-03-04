@@ -1,13 +1,15 @@
 
 - [Installation von Docspell unter Unraid mit Docker](#installation-von-docspell-unter-unraid-mit-docker)
-  - [Zwei mögliche Wege:](#zwei-mögliche-wege)
-  - [Variante 1: Custom Docker Netzwerk](#variante-1-custom-docker-netzwerk)
+  - [Drei mögliche Wege:](#drei-mögliche-wege)
+  - [Variante 1: br0](#variante-1-br0)
   - [Variante 2: VLAN](#variante-2-vlan)
+  - [Variante 3: Custom Docker Netzwerk](#variante-3-custom-docker-netzwerk)
   - [Vorarbeiten vor der Containererstellung](#vorarbeiten-vor-der-containererstellung)
 - [Docspell installation in Unraid with Docker](#docspell-installation-in-unraid-with-docker)
-  - [Two possible ways to achieve that:](#two-possible-ways-to-achieve-that)
-  - [Variation 1: Custom Docker Network](#variation-1-custom-docker-network)
+  - [Three possible ways to achieve that:](#three-possible-ways-to-achieve-that)
+  - [Variation 1: br0](#variation-1-br0)
   - [Variation 2: VLAN](#variation-2-vlan)
+  - [Variation 3: Custom Docker Network](#variation-3-custom-docker-network)
   - [Todo before creating the containers](#todo-before-creating-the-containers)
 - [Verwendete Variablen und Konfigurationsdateien<br>Used variables and configuration files](#verwendete-variablen-und-konfigurationsdateienused-variables-and-configuration-files)
   - [Inhalt der .env-Datei <br> Contents of the .env file](#inhalt-der-env-datei--contents-of-the-env-file)
@@ -31,29 +33,30 @@ Dokumentation/Quellen für Docspell:
 - https://github.com/eikek/docspell
 - https://docspell.org/docs/
 
+Thread im Unraid Forum:
+- https://forums.unraid.net/topic/103425-docspell-hilfe/
 
 <br>  
 
-## Zwei mögliche Wege:
--   **Custom Docker Netzwerk**  
-_Vorteil_: Die Kommunikation zwischen den Containern kann über deren Namen erfolgen (siehe z.B. unten bei "_docspell.conf_").
+## Drei mögliche Wege:
+-   **br0**  
+_Vorteil_: Jeder Container erhält eine IP, somit muss man sich bzgl. evtl. bereits verwendeter Ports weniger Gedanken machen (siehe unten).  
+ Diese Variante ist am einfachsten...
+
 -   **VLAN**  
 _Vorteil_: Jeder Container erhält eine IP aus dem VLAN, somit muss man sich bzgl. evtl. bereits verwendeter Ports weniger Gedanken machen (siehe unten). Zudem kann jeder Container dank eigener IP besser über eine Firewall "kontrolliert" werden.
+
+-   **Custom Docker Netzwerk**  
+_Vorteil_: Die Kommunikation zwischen den Containern kann über deren Namen erfolgen (siehe z.B. unten bei "_docspell.conf_").
     
-Ich habe anfangs ein "_custom docker network_" verwendet, habe dann aber zugunsten der eigenen IP-Adressen je Container auf ein VLAN gewechselt.   
+Ich habe anfangs ein "_custom docker network_" verwendet, habe dann aber zugunsten der eigenen IP-Adressen je Container auf ein VLAN gewechselt, zumal ich eh VLANs verwende.   
   
 <br>  
 
 
-## Variante 1: Custom Docker Netzwerk
-
-- Damit das Netzwerk bei der Erstellung der Container verfügbar ist muss in Unraid zuerst unter "_Settings_" => "_Docker_" 
-der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker Dienst muss vorher beendet werden).
-- Nun per SSH oder über die Unraid GUI auf die Console des Servers wechseln.  
-- Ein Custum Docker Netzwerk erstellen:  
-  Einfach:    `docker network create dnet-docspell`  
-  Erweitert: `docker network create --driver=bridge --subnet=192.168.3.0/25 --gateway=192.168.3.1  dnet-docspell`  
-- Das neu erstellte custum network "_dnet-docspell_" kann nun bei der Container Erstellung ausgewählt werden
+## Variante 1: br0
+- Einfach beim anlegen der Docker Container anstelle von "_bridge_"  "_br0_" verwenden
+- Mit "_br0_" kann jedem Container eine eigene IP aus der selben Range wie dem Unraid Server zugewiesen werden.   
 
 <br>  
 
@@ -62,6 +65,18 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
 - Damit VLANs verwendet werden können muss der verwendete Router/Switch VLANs unterstützen!
 - in Unraid unter "_Settings_" => "_Network Settings_" => "_Enable VLANs_" auf "_Yes_" stellen und die notwendigen Einstellungen vornehmen (Docker- und VM-Dienst muss vorher beendet werden).
 - Das neu erstellte VLAN (z.B. "_br0.5_") kann nun bei der Container Erstellung ausgewählt werden.
+
+<br>  
+
+## Variante 3: Custom Docker Netzwerk
+
+- Damit das Netzwerk bei der Erstellung der Container verfügbar ist muss in Unraid zuerst unter "_Settings_" => "_Docker_" 
+der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker Dienst muss vorher beendet werden).
+- Nun per SSH oder über die Unraid GUI auf die Console des Servers wechseln.  
+- Ein Custum Docker Netzwerk erstellen:  
+  Einfach:    `docker network create dnet-docspell`  
+  Erweitert: `docker network create --driver=bridge --subnet=192.168.3.0/25 --gateway=192.168.3.1  dnet-docspell`  
+- Das neu erstellte custum network "_dnet-docspell_" kann nun bei der Container Erstellung ausgewählt werden
 
 <br>  
 
@@ -247,20 +262,40 @@ Documentation/Sources for Docspell:
 - https://github.com/eikek/docspell
 - https://docspell.org/docs/
 
+Thread in the Unraid Forum:
+- https://forums.unraid.net/topic/103425-docspell-hilfe/
 
 <br>  
 
-## Two possible ways to achieve that:
+## Three possible ways to achieve that:
+- **br0**  
+_Advantage_: Each container receives an IP from the IP-range your unraid server is in, so you don't have to worry about any ports that may already be used (see below).  
+ Diese Variante ist am einfachsten...
+- **VLAN**  
+_Advantage_: Each container receives an IP from the VLAN, so you don't have to worry about any ports that may already be used (see below). In addition, each container can be better "controlled" via a firewall thanks to its own IP.
 - **Custom Docker Network**  
 _Advantage_: The communication between the containers can take place via their names (see e.g. below under "_docspell.conf_").
-- **VLAN**  
-_Advantage_: Each container receives an IP from the VLAN, so you don't have to worry as much about any ports that may already be used (see below). In addition, each container can be better "controlled" via a firewall thanks to its own IP.
     
-At the beginning I used a "_custom docker network_", but then switched to a VLAN in favor of the own IP addresses for each container.  
+At the beginning I used a "_custom docker network_", but then switched to a VLAN in favor of the own IP addresses for each container and beeing able to better control the container communication with my firewall and switches.  
 <br>  
 
 
-## Variation 1: Custom Docker Network
+## Variation 1: br0
+
+- When configuring the docker container use "_br0_" and not "_bridge_"
+- Using "_br0_" each container has its own IP address that is in the IP range the Unraid Server is in.   
+
+<br>  
+
+## Variation 2: VLAN
+
+- To use VLANs the router / switch used must support VLANs!
+- In Unraid go to "_Settings_" => "_Network Settings_" => "_Enable VLANs_", set it to "_Yes_" and make the necessary settings (Docker and VM service must be terminated beforehand).
+- The newly created VLAN (e.g. "_br0.5_") can now be selected when creating the container.
+
+<br>  
+
+## Variation 3: Custom Docker Network
 
 - In order for the network to be available when creating the container:  
   In Unraid go to "_Settings_" => "_Docker_". Choose the item "_Preserve user defined networks_" and set it to "_Yes_" (Docker service must be terminated beforehand).
@@ -270,14 +305,6 @@ At the beginning I used a "_custom docker network_", but then switched to a VLAN
   Extended: `docker network create --driver = bridge --subnet = 192.168.3.0 / 25 --gateway = 192.168.3.1 dnet-docspell`  
 - The newly created custom network "_dnet-docspell_" can now be selected when creating the container.  
 
-<br>  
-
-## Variation 2: VLAN
-
-
-- To use VLANs the router / switch used must support VLANs!
-- In Unraid go to "_Settings_" => "_Network Settings_" => "_Enable VLANs_", set it to "_Yes_" and make the necessary settings (Docker and VM service must be terminated beforehand).
-- The newly created VLAN (e.g. "_br0.5_") can now be selected when creating the container.
 <br>  
 
 ## Todo before creating the containers
