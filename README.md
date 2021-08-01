@@ -2,7 +2,7 @@
 - [Hinweis: Änderungen seit docspell v0.24](#hinweis-änderungen-seit-docspell-v024)
     - [Die Hauptunterschiede:](#die-hauptunterschiede)
   - [------- *IN BEARBEITUNG - WORK in PROGRESS* -------](#--------in-bearbeitung---work-in-progress--------)
-- [Installation von Docspell unter Unraid mit Docker](#installation-von-docspell-unter-unraid-mit-docker)
+- [Installation von Docspell in Unraid Docker](#installation-von-docspell-in-unraid-docker)
   - [NETZWERK: Drei Möglichkeiten](#netzwerk-drei-möglichkeiten)
   - [DOCKER CONTAINER: Vorarbeiten & Erstellung](#docker-container-vorarbeiten--erstellung)
 - [Docspell installation in Unraid with Docker](#docspell-installation-in-unraid-with-docker)
@@ -27,7 +27,7 @@ Warum nicht ab v0.24? Ganz einfach, die habe ich nicht getestet, da ich von v0.2
 - Wechsel des Repository: von "`eikek0/docspell`" zu "`docspell`"
 - Wechsel von Postgresql: von 11.7 zu Postgresql 13.3  
 _Achtung:_ kein einfaches Upgrade über major versions möglich!
-- Erneut Benutzung der `.env`Datei für globale Variablen
+- Erneut Benutzung der `.env` Datei für globale Variablen
 
 <br>  
 <br>  
@@ -38,15 +38,15 @@ TODO : Aktualisierung der Templates (v0.23 > v0.25)!
 <br>  
 <br>  
 
-# Installation von Docspell unter Unraid mit Docker
+# Installation von Docspell in Unraid Docker
 
 
 _Info: Diese Dokumentation is getestet bis Version 0.25.1 von Docspell_  
  
   
 Docspell ist ein Dokumentenmanagementsystem (DMS).  
-Getestet habe ich auch Teedy, Mayan, Paperless, Perpermerge  
-Aber Docspell hat mich überzeugt.  
+Getestet habe ich auch Teedy, Mayan, Paperless, Perpermerge.  
+Aber Docspell hat mich überzeugt. Es ist einfach gehalten und übersichtlich.  
   
 In Unraid müssen mehrere Container für Doscspell installiert werden, die untereinander kommunizieren müssen.  
 Den Containern müssen diverse Variablen mitgegeben werden.  
