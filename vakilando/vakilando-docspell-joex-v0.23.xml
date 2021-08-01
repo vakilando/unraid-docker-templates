@@ -1,30 +1,23 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>docspell-joex</Name>
-  <Repository>docspell/joex:latest</Repository>
-  <Registry>https://hub.docker.com/r/docspell/</Registry>
+  <Repository>eikek0/docspell:joex-LATEST</Repository>
+  <Registry>https://hub.docker.com/r/eikek0/docspell/</Registry>
   <Network>bridge</Network>
   <MyIP></MyIP>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support>https://github.com/eikek/docspell/issues</Support>
+  <Support>https://hub.docker.com/r/eikek0/docspell/</Support>
   <Project>https://docspell.org</Project>
   <Overview>Docspell is a personal document organizer (https://github.com/eikek/docspell).&#xD;
 &#xD;
 Part 3: Docspell-JOEX&#xD;
 &#xD;
 Docspell needs a set of images to run:&#xD;
-1. solr for fulltext search  (install an image of your choice)&#xD;
-2. database (install an image of your choice. This template uses postgresql)&#xD;
-3. docspell-consumedir&#xD;
-4. docspell-joex&#xD;
-5. docspell-restserver&#xD;
-&#xD;
-DO NOT FORGET to CHANGE in "ExtraParams":&#xD;
- - the ".env" file&#xD;
-DO NOT FORGET to CHANGE in "PostArgs":&#xD;
- - the Restserver IP: "http://your.rest.server.ip:7880"&#xD;
- - the Secret Header: "Docspell-Integration:SomeRandomString" "/opt/docs"&#xD;
+1. solr and a database (install a solr and database image of your choice)&#xD;
+2. docspell-joex&#xD;
+3. docspell-restserver&#xD;
+4. docspell-consumedir&#xD;
 &#xD;
 JOEX is short for Job Executor and it is the component managing long running tasks in docspell.&#xD;
 One of these long running tasks is the file processing task.&#xD;
@@ -33,9 +26,9 @@ For installation instrustions on Unraid see: https://github.com/vakilando/unraid
   <Category>Productivity:</Category>
   <WebUI>http://[IP]:[PORT:7878]</WebUI>
   <TemplateURL/>
-  <Icon>https://raw.githubusercontent.com/vakilando/unraid-docker-templates/master/vakilando/vakilando-docspell-logo-only.png</Icon>
-  <ExtraParams>--env-file=/mnt/user/appdata/docspell/.env -e JAVA_OPTS="-Xmx2500m"</ExtraParams>
-  <PostArgs>/opt/docspell.conf</PostArgs>
+  <Icon>/plugins/dynamix.docker.manager/images/question.png</Icon>
+  <ExtraParams></ExtraParams>
+  <PostArgs/>
   <CPUset/>
   <DateInstalled>1608760706</DateInstalled>
   <DonateText/>
@@ -45,17 +38,10 @@ For installation instrustions on Unraid see: https://github.com/vakilando/unraid
 Part 3: Docspell-JOEX&#xD;
 &#xD;
 Docspell needs a set of images to run:&#xD;
-1. solr for fulltext search  (install an image of your choice)&#xD;
-2. database (install an image of your choice. This template uses postgresql)&#xD;
-3. docspell-consumedir&#xD;
-4. docspell-joex&#xD;
-5. docspell-restserver&#xD;
-&#xD;
-DO NOT FORGET to CHANGE in "ExtraParams":&#xD;
- - the ".env" file&#xD;
-DO NOT FORGET to CHANGE in "PostArgs":&#xD;
- - the Restserver IP: "http://your.rest.server.ip:7880"&#xD;
- - the Secret Header: "Docspell-Integration:SomeRandomString" "/opt/docs"&#xD;
+1. solr and a database (install a solr and database image of your choice)&#xD;
+2. docspell-consumedir&#xD;
+3. docspell-joex&#xD;
+4. docspell-restserver&#xD;
 &#xD;
 JOEX is short for Job Executor and it is the component managing long running tasks in docspell.&#xD;
 One of these long running tasks is the file processing task.&#xD;
@@ -73,7 +59,7 @@ For installation instrustions on Unraid see: https://github.com/vakilando/unraid
   </Networking>
   <Data>
     <Volume>
-      <HostDir>/mnt/user/appdata/docspell/opt/docspell.conf</HostDir>
+      <HostDir></HostDir>
       <ContainerDir>/opt/docspell.conf</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
@@ -85,7 +71,7 @@ For installation instrustions on Unraid see: https://github.com/vakilando/unraid
       <Mode/>
     </Variable>
     <Variable>
-      <Value>SomeRandomString</Value>
+      <Value></Value>
       <Name>DOCSPELL_HEADER_VALUE</Name>
       <Mode/>
     </Variable>
@@ -105,17 +91,17 @@ For installation instrustions on Unraid see: https://github.com/vakilando/unraid
       <Mode/>
     </Variable>
     <Variable>
-      <Value>docsspell</Value>
+      <Value></Value>
       <Name>DB_NAME</Name>
       <Mode/>
     </Variable>
     <Variable>
-      <Value>docspell</Value>
+      <Value></Value>
       <Name>DB_USER</Name>
       <Mode/>
     </Variable>
     <Variable>
-      <Value>SomeGoodPassw0rd</Value>
+      <Value></Value>
       <Name>DB_PASS</Name>
       <Mode/>
     </Variable>

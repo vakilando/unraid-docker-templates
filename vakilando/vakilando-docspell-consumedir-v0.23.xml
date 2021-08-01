@@ -1,30 +1,23 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>docspell-consumedir</Name>
-  <Repository>docspell/dsc:latest</Repository>
-  <Registry>https://hub.docker.com/r/docspell/</Registry>
+  <Repository>eikek0/docspell:consumedir-LATEST</Repository>
+  <Registry>https://hub.docker.com/r/eikek0/docspell/</Registry>
   <Network>bridge</Network>
   <MyIP></MyIP>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support>https://github.com/eikek/docspell/issues</Support>
+  <Support>https://hub.docker.com/r/eikek0/docspell/</Support>
   <Project>https://docspell.org</Project>
   <Overview>Docspell is a personal document organizer (https://github.com/eikek/docspell).&#xD;
 &#xD;
 Part 2: Docspell-Consumedir &#xD;
 &#xD;
 Docspell needs a set of images to run:&#xD;
-1. solr for fulltext search  (install an image of your choice)&#xD;
-2. database (install an image of your choice. This template uses a postgresql db.)&#xD;
-3. docspell-consumedir / dsc&#xD;
-4. docspell-joex&#xD;
-5. docspell-restserver&#xD;
-&#xD;
-DO NOT FORGET to CHANGE in "ExtraParams":&#xD;
- - the ".env" file&#xD;
-DO NOT FORGET to CHANGE in "PostArgs":&#xD;
- - the Restserver IP: "http://your.rest.server.ip:7880"&#xD;
- - the Secret Header: "Docspell-Integration:SomeRandomString" "/opt/docs"&#xD;
+1. solr and a database (install a solr and database image of your choice)&#xD;
+2. docspell-consumedir&#xD;
+3. docspell-joex&#xD;
+4. docspell-restserver&#xD;
 &#xD;
 This Container watches a directory (configured below) and uploads all incoming files to Docspell.&#xD;
 The script can watch directories recursively and can skip files already uploaded, so you can organize the files as you want in there (rename, move etc).&#xD;
@@ -32,9 +25,9 @@ For installation instrustions on Unraid see: https://github.com/vakilando/unraid
   <Category>Productivity:</Category>
   <WebUI>http://[IP]:[PORT:7878]</WebUI>
   <TemplateURL/>
-  <Icon>https://raw.githubusercontent.com/vakilando/unraid-docker-templates/master/vakilando/vakilando-docspell-logo-only.png</Icon>
-  <ExtraParams>--env-file=/mnt/user/appdata/docspell/.env --restart=unless-stopped</ExtraParams>
-  <PostArgs>dsc "-vv" "-d" "http://your.rest.server.ip:7880" "watch" "--delete" "-ir" "--header" "Docspell-Integration:SomeRandomString" "/opt/docs"</PostArgs>
+  <Icon>/plugins/dynamix.docker.manager/images/question.png</Icon>
+  <ExtraParams></ExtraParams>
+  <PostArgs/>
   <CPUset/>
   <DateInstalled>1608760548</DateInstalled>
   <DonateText/>
@@ -44,27 +37,21 @@ For installation instrustions on Unraid see: https://github.com/vakilando/unraid
 Part 2: Docspell-Consumedir &#xD;
 &#xD;
 Docspell needs a set of images to run:&#xD;
-1. solr for fulltext search  (install an image of your choice).&#xD;
-2. database (install an image of your choice. This template uses a postgresql db.)&#xD;
-3. docspell-consumedir / dsc&#xD;
-4. docspell-joex&#xD;
-5. docspell-restserver&#xD;
-&#xD;
-DO NOT FORGET to CHANGE in "ExtraParams":&#xD;
- - the ".env" file&#xD;
-DO NOT FORGET to CHANGE in "PostArgs":&#xD;
- - the Restserver IP: "http://your.rest.server.ip:7880"&#xD;
- - the Secret Header: "Docspell-Integration:SomeRandomString" "/opt/docs"&#xD;
-&#xD;
+1. solr and a database (install a solr and database image of your choice)&#xD;
+2. docspell-joex&#xD;
+3. docspell-restserver&#xD;
+4. docspell-consumedir&#xD;
 &#xD;
 This Container watches a directory (configured below) and uploads all incoming files to Docspell.&#xD;
 The script can watch directories recursively and can skip files already uploaded, so you can organize the files as you want in there (rename, move etc).&#xD;
 For installation instrustions on Unraid see: https://github.com/vakilando/unraid-docker-templates </Description>
-
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish/>
   </Networking>
   <Data>
     <Volume>
-      <HostDir>/mnt/user/appdata/docspell/docs/</HostDir>
+      <HostDir></HostDir>
       <ContainerDir>/opt/docs</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
@@ -96,12 +83,12 @@ For installation instrustions on Unraid see: https://github.com/vakilando/unraid
       <Mode/>
     </Variable>
     <Variable>
-      <Value>docspell</Value>
+      <Value></Value>
       <Name>DB_NAME</Name>
       <Mode/>
     </Variable>
     <Variable>
-      <Value>docspell</Value>
+      <Value></Value>
       <Name>DB_USER</Name>
       <Mode/>
     </Variable>
