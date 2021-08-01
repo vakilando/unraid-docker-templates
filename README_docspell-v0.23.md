@@ -15,43 +15,21 @@
   - [Inhalt der .env-Datei <br> Contents of the .env file](#inhalt-der-env-datei--contents-of-the-env-file)
   - [Genutzte Container Variablen in den Templates<br>Used container variables in the templates](#genutzte-container-variablen-in-den-templatesused-container-variables-in-the-templates)
 
-
-<br>  
-<br>  
-
-# Hinweis: Änderungen seit docspell v0.24 
-Bis zur Version 0.23 funktioniert die alte Reamde-Version [hier](README_docspell-v0.23.md "Readme Docspell v0.23").  
-Ab Version 0.25 muss diese Vorgehensweise verwendet werden.  
-Warum nicht ab v0.24? Ganz einfach, die habe ich nicht getestet, da ich von v0.23 direkt auf die v0.25 gewechselt bin.  
-### Die Hauptunterschiede:  
-- Wechsel des Repository: von "`eikek0/docspell`" zu "`docspell`"
-- Wechsel von Postgresql: von 11.7 zu Postgresql 13.3  
-_Achtung:_ kein einfaches Upgrade über major versions möglich!
-- Erneut Benutzung der `.env`Datei für globale Variablen
-
-<br>  
-<br>  
-
-## ------- *IN BEARBEITUNG - WORK in PROGRESS* -------
-TODO : Aktualisierung der Templates (v0.23 > v0.25)!  
-*Bis dahin: siehe Readme Version 0.23: [hier](README_docspell-v0.23.md "Readme Docspell v0.23")*
-<br>  
-<br>  
+<br>
 
 # Installation von Docspell unter Unraid mit Docker
 
+---
 
-_Info: Diese Dokumentation is getestet bis Version 0.25.1 von Docspell_  
+<br>
+
+_Info: Diese Dokumentation is getestet bis Version 0.20.0 von Docspell_  
  
   
-Docspell ist ein Dokumentenmanagementsystem (DMS).  
-Getestet habe ich auch Teedy, Mayan, Paperless, Perpermerge  
-Aber Docspell hat mich überzeugt.  
-  
-In Unraid müssen mehrere Container für Doscspell installiert werden, die untereinander kommunizieren müssen.  
-Den Containern müssen diverse Variablen mitgegeben werden.  
-Zu den Variablen gehören auch die Pfade der Dateien `docspell.conf`und `.env`.  
-Diese Dateien müssen _<b>vor</b>_ dem (ersten) Start des Dockers vorhanden sein!.  
+Docspell ist ein Dokumentenmanagementsystem (DMS) wie z.B. auch Teedy, Mayan, Paperless, Perpermerge, ...   
+Nach langem hin-und-her-testen, habe ich mich für Docspell entschieden.  
+Um Docspell unter Unraid zu nutzen müssen mehrere Container installiert werden, die miteinander kommunizieren müssen.
+Den Containern müssen diverse Variablen mitgegeben werden und eine Konfigurationsdatei.
 
 Dokumentation/Quellen für Docspell:  
 - https://hub.docker.com/r/eikek0/docspell/  
@@ -62,37 +40,38 @@ Thread im Unraid Forum:
 - https://forums.unraid.net/topic/103425-docspell-hilfe/
 
 <br>  
+
+## Drei mögliche Wege:
+-   **br0**  
+_Vorteil_: Jeder Container erhält eine IP, somit muss man sich bzgl. evtl. bereits verwendeter Ports weniger Gedanken machen (siehe unten).  
+ Diese Variante ist am einfachsten...
+
+-   **VLAN**  
+_Vorteil_: Jeder Container erhält eine IP aus dem VLAN, somit muss man sich bzgl. evtl. bereits verwendeter Ports weniger Gedanken machen (siehe unten). Zudem kann jeder Container dank eigener IP besser über eine Firewall "kontrolliert" werden.
+
+-   **Custom Docker Netzwerk**  
+_Vorteil_: Die Kommunikation zwischen den Containern kann über deren Namen erfolgen (siehe z.B. unten bei "_docspell.conf_").
+    
+Ich habe anfangs ein "_custom docker network_" verwendet, habe dann aber zugunsten der eigenen IP-Adressen je Container auf ein VLAN gewechselt, zumal ich eh VLANs verwende.   
+  
 <br>  
 
-## NETZWERK: Drei Möglichkeiten
-**br0**  
-  
-_Vorteil_:  
-Jeder Container erhält eine eigene IP. Über die Vergabe von Ports muss man sich so weniger Gedanken machen (siehe unten). Zudem kann jeder Container dank eigener IP besser über eine Firewall "kontrolliert" werden.  
-Diese Variante ist am einfachsten...
+
+## Variante 1: br0
+- Einfach beim anlegen der Docker Container anstelle von "_bridge_"  "_br0_" verwenden
+- Mit "_br0_" kann jedem Container eine eigene IP aus der selben Range wie dem Unraid Server zugewiesen werden.   
+
 <br>  
-_Vorgehen:_  
 
- - Beim anlegen der Docker Container als Netzwerk `br0` verwenden (anstelle von `bridge`)  
- - Mit "br0" kann jedem Container eine eigene IP aus der selben Range wie dem Unraid Server zugewiesen werden.
-
-
-**VLan**  
-  
-_Vorteil_:  
-Jeder Container erhält eine eigene IP aus dem verwendetem VLAN. Über die Vergabe von Ports muss man sich so weniger Gedanken machen (siehe unten). Zudem kann jeder Container dank eigener IP besser über eine Firewall "kontrolliert" werden.
+## Variante 2: VLAN
 
 - Damit VLANs verwendet werden können muss der verwendete Router/Switch VLANs unterstützen!
 - in Unraid unter "_Settings_" => "_Network Settings_" => "_Enable VLANs_" auf "_Yes_" stellen und die notwendigen Einstellungen vornehmen (Docker- und VM-Dienst muss vorher beendet werden).
 - Das neu erstellte VLAN (z.B. "_br0.5_") kann nun bei der Container Erstellung ausgewählt werden.
 
-**Custom Docker Netzwerk**  
-  
-_Vorteil_:  
-Die Kommunikation zwischen den Containern kann über deren Namen erfolgen (siehe z.B. unten bei "_docspell.conf_").
-    
-Ich habe anfangs ein "_custom docker network_" verwendet, habe dann aber zugunsten der eigenen IP-Adressen je Container auf ein VLAN gewechselt, zumal ich eh VLANs verwende.   
-  
+<br>  
+
+## Variante 3: Custom Docker Netzwerk
 
 - Damit das Netzwerk bei der Erstellung der Container verfügbar ist muss in Unraid zuerst unter "_Settings_" => "_Docker_" 
 der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker Dienst muss vorher beendet werden).
@@ -103,10 +82,8 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
 - Das neu erstellte custum network "_dnet-docspell_" kann nun bei der Container Erstellung ausgewählt werden
 
 <br>  
-<br>  
 
-
-## DOCKER CONTAINER: Vorarbeiten & Erstellung
+## Vorarbeiten vor der Containererstellung
 
 1. **Verzeichnisse anlegen**  
    Verzeichnis "`docspell`" unter "`appdata`" anlegen.  
@@ -114,7 +91,7 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
 
 2. **Konfigurationsdatei anlegen**  
    "`docspell.conf`" in "`/docspell/opt`" anlegen.  
-   Es kann die Datei von github genommen werden: <https://github.com/eikek/docspell/blob/master/docker/docker-compose/docspell.conf>  
+   Es kann die Datei von github genommen werden: <https://github.com/eikek/docspell/blob/master/docker/docspell.conf>  
      
    Ich habe folgende Änderungen vorgenommen:  
    - alle Dockernamen durch ihre IP-Adresse ersetzt  
@@ -124,68 +101,32 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
      also z.B. "`jdbc:"\${DB_TYPE}"://"\${DB_HOST}":"\${DB_PORT}"/"\${DB_NAME}` => `"jdbc:postgresql://192.168.3.2:5432/dbname"`  
        
    Ich habe es NICHT getestet aber:  
-   Wird ein *custom Docker Network* verwendet, sollte die Namensauflösung funktionieren und eine Ersetzung der Dockernamen durch ihre IP-Adresse sollte nicht notwendig sein.  
-   Da die Variablen in den Docker Templates und der `.env`Datei (wenn verwendet) enthalten sind, sollten sie hier funktionieren (Ersetzen nicht notwendig).  
+   - bei Verwendung eines _custom Docker Netzwerks_ sollte die Dockernamensauflösung funktionieren...  
+   - da die Variablen in den Unraid Docker Templates enthalten sind sollten die Variablen hier funktionieren...  
 
-3. **Variablen**  
-   Die Docspell Container benötigen selbst und gemeinsame genutzte Variablen (siehe auch in "_docspell.conf_").
-   Die Variablen können in jedem Telmplate angepasst werden (Die Variablen sind dort vordefiniert und beschrieben).  
-   Für gemeinsam genutzte Variablen die kann die Verwendung einer zentralen Datei `.env` praktisch sein um Vorgaben zentral zu speichern, erfordert aber das Anlegen der Datei _vor_ Erstellung der Docker unter "`../appdata/docspell`".  
-   Sie wird unter "*Extra Parameters*" angegeben:  
+3. **Gemeinsam genutzte Variablen**  
+   Die Docker Container benötigen gemeinsame Variablen (siehe "_docspell.conf_").  
+   Die Variablen werden  
+   - **ENTWEDER** in jedem Telmplate angepasst  
+     (Die Variablen sind dort vordefiniert und beschrieben)
+   - **ODER** über eine zentrale Datei unter "_Extra Parameters_" angegeben:  
    "`--env-file=/mnt/user/appdata/docspell/.env`"  
-      Es kann die Datei von github genommen werden: <https://github.com/eikek/docspell/blob/master/docker/docker-compose/.env>  
+      Es kann die Datei von github genommen werden: <https://github.com/eikek/docspell/blob/master/docker/.env>  
+      Sie wird unter "`../appdata/docspell`" gespeichert.  
         
+      Die "`.env`"-Datei ist praktisch um Vorgaben zentral zu speichern, erfordert aber das Anlegen der Datei _vor_ Erstellung der Docker.  
 
 4. **Unraid Templates einbinden**  
    In Unraid unter "_Docker_" => "_Template Repositories_" (ganz unten) folgende URL eintragen und auf "_Save_" klicken: <https://github.com/vakilando/unraid-docker-templates>  
 
-5. **Postgresql upgrade!**  
-   Wenn bereits eine ältere Postgresdatenbank mit docspell vorhanden ist sollte sie ein Upgrade erfahren.  
-   Ein Upgrade von Version 11.7 auf 13.3 wird hier beschrieben:  
-    1. **Postgresql 13.3 in Unraid parallel zum 11.7 installieren (official repository)**  
-       Der neue Postgresql 13.3 bekommt die selben Einstellungen wie der 11.7 nur:  
-        - einen anderen Namen
-        - eine andere IP
-        - eine andere MAC Adresse.
-
-   2. **BACKUP der alte Postgresql 11.7 Datenbank JETZT**  
-      Auf Unraid, Backup Verzeichnis in appdata von postgres 11.7 erstellen und betreten:  
-      `mkdir /mnt/cache/appdata/postgres-11.7/BACKUPS`  
-      `cd /mnt/cache/appdata/postgres-11.7/BACKUPS`  
-      Für eine Vollsicherung des ganzen DB-Servers:  
-      `docker exec postgres-11.7 pg_dumpall -U pgadmin > pg_dumpall_pg11.7.bkp`  
-      Für eine Sicherung nur der Datenbank "docspell":  
-      `docker exec postgres-11.7 pg_dump -U pgadmin -Fc docspell > pg_dump_docspell_pg11.7.bkp`  
-
-   3. **Importieren des Postgresql 11.7 Datenbank Backups in Postgresql 13.3**  
-      Auf Unraid, Backup Verzeichnis in appdata von postgres 13.3  erstellen und betreten:  
-      `mkdir /mnt/cache/appdata/postgres-13.3/BACKUPS`  
-      `cd /mnt/cache/appdata/postgres-13.3/BACKUPS`  
-      Kopieren der 11.7 Backups nach appdata des neuen Postgresql 13.3  
-      Vollsicherung: `cp /mnt/cache/appdata/postgres-11.7/BACKUPS/pg_dumpall_pg11.7.bkp .`  
-      Datenbank: `cp /mnt/cache/appdata/postgres-11.7/BACKUPS/dpg_dump_docspell_pg11.7.bkp .`  
-      _Vollsicherung zurückspielen:_  
-      Die Console des Postgresql 13.3 Container starten und in das Backup Verzeichnis wechseln:  
-      `cd /var/lib/postgresql/data/BACKUPS`  
-      Vollsicherung zurückspielen:  
-      `psql -U pgadmin -f pg_dumpall_pg11.7_2.bkp postgres`  
-      _Datenbanksicherung zurückspielen:_  
-      Über das Unraid "Webterminal" oder über SSH (z.B. mit Putty bei Unraid anmelden):
-      `docker exec -i -u pgadmin postgres-13.3 pg_restore -C -d postgres < dpg_dump_docspell_pg11.7.bkp`  
-
-5. **Container anpassen**  
-Alter Container postgresql-11.7: Autostart AUS  
-Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten setzen und Autostart AN  
-
-6. **Container einrichten**  
+5. **Container einrichten**  
    In Unraid unter "_Docker_" unten auf "**ADD CONTAINER**" klicken.  
    Wähle die Container "_vakilando-docspell-xxx_" aus  
    Siehe unten für weitere Informationen bzgl. der Templates.     
    <br>
    1. **postgres**   
       Ich verwende Postgresql aus dem original Repository  
-      Verwendet wird die Version wie in der dockspell docker-compose.yml: postgres:13.3  
-      Ich habe vorher schin eine Installation mit Postgres:11.7. Upgrade: siehe oben.
+      Repository: postgres:11.7  
       Docker: https://hub.docker.com/\_/postgres/  
         
       _**Wichtige Einstellungen:** sind **fett** markiert._  
@@ -195,7 +136,7 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
 
       Feld | Wert  (anzupassen!)  
       ---------|----------
-       Repository: | postgres:13.3
+       Repository: | postgres:11.7
        Network Type: | custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
        Extra Parameters |**--hostname db**
@@ -207,7 +148,7 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
       <br>    
 
    2. **solr**   
-      Ich verwende Solr aus dem Repository "bitnami"  
+      Ich verwende Solr aus dem Repository "_A75G's Repository_"  
       Docker: <https://hub.docker.com/r/bitnami/solr/>  
       Support: https://forums.unraid.net/topic/89502-support-a75g-repo/  
       Project: https://lucene.apache.org/solr/  
@@ -221,7 +162,7 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
        Network Type: | custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
        Port: | **8983**
-       Appdata: | z.B. /mnt/user/appdata/solr_data
+       Appdata: | z.B. /mnt/user/appdata/docspell/solr_data
        SOLR_PORT_NUMBER: | **8983**
        SOLR_CORE: | **docspell**
       <br>    
@@ -235,13 +176,11 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
         
       Feld | Wert 
       ---------|----------
-       Repository: | docspell/joex:latest
-       Extra Parameters (NEU) | --mac-address 04:32:C1:12:02:13 --env-file=/mnt/user/appdata/docspell/.env -e JAVA_OPTS="-Xmx2500m" --no-healthcheck
-       Post Arguments: (NEU) | /opt/docspell.conf
-       Network Type: | br0, custom-network oder VLAN wählen
+       Repository: | eikek0/docspell:joex-LATEST
+       Network Type: | custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
        Host Port 1: | **7878**
-       /opt/docspell.conf | /mnt/user/appdata/docspell/opt/docspell.conf<br>(_muss vorhanden sein!!_)
+       docspell.conf | /mnt/user/appdata/docspell/opt/docspell.conf<br>(_muss vorhanden sein!!_)
        TZ | Europe/Berlin
        DOCSPELL_HEADER_VALUE | **SomeRandomString**  
        DB_TYPE | postgresql
@@ -261,13 +200,11 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
         
       Feld | Wert 
       ---------|----------
-       Repository: | docspell/restserver:latest
-       Extra Parameters (NEU) | --mac-address 04:42:E2:13:03:11 --env-file=/mnt/user/appdata/docspell/.env --hostname docspell.domain.com --no-healthcheck
-       Post Arguments: (NEU) | /opt/docspell.conf
+       Repository: | eikek0/docspell:restserver-LATEST
        Network Type: | custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
        Host Port 1: | **7880**
-       /opt/docspell.conf | /mnt/user/appdata/docspell/opt/docspell.conf<br>(_muss vorhanden sein!!_)
+       docspell.conf | /mnt/user/appdata/docspell/opt/docspell.conf<br>(_muss vorhanden sein!!_)
        TZ | Europe/Berlin
        DOCSPELL_HEADER_VALUE | **SomeRandomString**  
        DB_TYPE | postgresql
@@ -287,9 +224,7 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
         
       Feld | Wert (anzupassen!)  
       ---------|----------
-       Repository: | docspell/dsc:latest
-       Extra Parameters (NEU) | --mac-address 22:42:E1:55:21:03 --env-file=/mnt/user/appdata/docspell/.env --restart=unless-stopped --no-healthcheck
-       Post Arguments: (NEU) | dsc "-vv" "-d" "http://ip.add.re.ss:7880" "watch" "--delete" "-ir" "--header" "Docspell-Integration:SomeRandomString" "/opt/docs"
+       Repository: | eikek0/docspell:consumedir-LATEST
        Network Type: | custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
        Consumedir: | z.B. /mnt/user/appdata/docspell/docs
@@ -304,7 +239,7 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
        CONSUMEDIR_INTEGRATION | **y**
       <br>    
 
-7. **Die Reihenfolge in der die Container starten ist wichtig!**  
+6. **Die Reihenfolge in der die Container starten ist wichtig!**  
    Daher ist diese nach der Installation durch verschieben mit der Maus ggf. zu korrigieren:  
     1. postgres  
     2. solr  
