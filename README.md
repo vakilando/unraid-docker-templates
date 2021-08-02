@@ -6,8 +6,8 @@
   - [NETZWERK: Drei Möglichkeiten](#netzwerk-drei-möglichkeiten)
   - [DOCKER CONTAINER: Vorarbeiten & Erstellung](#docker-container-vorarbeiten--erstellung)
 - [Docspell installation in Unraid with Docker](#docspell-installation-in-unraid-with-docker)
-  - [Three possible ways to achieve that:](#three-possible-ways-to-achieve-that)
-  - [Todo before creating the containers](#todo-before-creating-the-containers)
+  - [NETWORKING: Three possible ways](#networking-three-possible-ways)
+  - [DOCKER CONTAINER: Todo and creating](#docker-container-todo-and-creating)
 - [Verwendete Variablen und Konfigurationsdateien<br>Used variables and configuration files](#verwendete-variablen-und-konfigurationsdateienused-variables-and-configuration-files)
   - [Inhalt der .env-Datei <br> Contents of the .env file](#inhalt-der-env-datei--contents-of-the-env-file)
   - [Genutzte Container Variablen in den Templates<br>Used container variables in the templates](#genutzte-container-variablen-in-den-templatesused-container-variables-in-the-templates)
@@ -342,7 +342,7 @@ Thread in the Unraid Forum:
 
 <br>  
 
-## Three possible ways to achieve that:
+## NETWORKING: Three possible ways
 **br0**  
 _Advantage_: Each container gets an IP from the IP-range your unraid server is in. You don't have to worry about any ports that may already be used (see below). In addition, each container can be better "controlled" via a firewall thanks to its own IP.
 
@@ -372,7 +372,7 @@ At the beginning I used a "_custom docker network_", but then switched to a VLAN
 <br>  
 <br>  
 
-## Todo before creating the containers
+## DOCKER CONTAINER: Todo and creating
 
 1. **Create directories**  
    Create the directory "`docspell`" in "`appdata`".  
