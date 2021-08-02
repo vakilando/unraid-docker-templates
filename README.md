@@ -5,8 +5,8 @@
 - [Installation von Docspell in Unraid Docker](#installation-von-docspell-in-unraid-docker)
   - [NETZWERK: Drei Möglichkeiten](#netzwerk-drei-möglichkeiten)
   - [DOCKER CONTAINER: Vorarbeiten & Erstellung](#docker-container-vorarbeiten--erstellung)
-- [Docspell installation in Unraid with Docker](#docspell-installation-in-unraid-with-docker)
-  - [NETWORKING: Three possible ways](#networking-three-possible-ways)
+- [Installation of Docspell in Unraid with Docker](#installation-of-docspell-in-unraid-with-docker)
+  - [NETWORK: Three possible ways](#network-three-possible-ways)
   - [DOCKER CONTAINER: Todo and creating](#docker-container-todo-and-creating)
 - [Verwendete Variablen und Konfigurationsdateien<br>Used variables and configuration files](#verwendete-variablen-und-konfigurationsdateienused-variables-and-configuration-files)
   - [Inhalt der .env-Datei <br> Contents of the .env file](#inhalt-der-env-datei--contents-of-the-env-file)
@@ -324,7 +324,7 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
 ------------  
 <br>
 
-# Docspell installation in Unraid with Docker
+# Installation of Docspell in Unraid with Docker
 
 _Info: This documentation is tested up to version 0.20.0 of docspell_  
  
@@ -342,7 +342,7 @@ Thread in the Unraid Forum:
 
 <br>  
 
-## NETWORKING: Three possible ways
+## NETWORK: Three possible ways
 **br0**  
 _Advantage_: Each container gets an IP from the IP-range your unraid server is in. You don't have to worry about any ports that may already be used (see below). In addition, each container can be better "controlled" via a firewall thanks to its own IP.
 
