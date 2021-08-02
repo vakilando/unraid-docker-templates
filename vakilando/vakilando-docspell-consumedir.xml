@@ -11,7 +11,7 @@
   <Project>https://docspell.org</Project>
   <Overview>Docspell is a personal document organizer (https://github.com/eikek/docspell).&#xD;
 &#xD;
-Part 2: Docspell-Consumedir &#xD;
+Part 2: Docspell-Consumedir / dsc &#xD;
 &#xD;
 Docspell needs a set of images to run:&#xD;
 1. solr for fulltext search  (install an image of your choice)&#xD;
@@ -60,7 +60,9 @@ DO NOT FORGET to CHANGE in "PostArgs":&#xD;
 This Container watches a directory (configured below) and uploads all incoming files to Docspell.&#xD;
 The script can watch directories recursively and can skip files already uploaded, so you can organize the files as you want in there (rename, move etc).&#xD;
 For installation instrustions on Unraid see: https://github.com/vakilando/unraid-docker-templates </Description>
-
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish/>
   </Networking>
   <Data>
     <Volume>
