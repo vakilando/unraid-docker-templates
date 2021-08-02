@@ -8,7 +8,7 @@
 - [Installation of Docspell in Unraid with Docker](#installation-of-docspell-in-unraid-with-docker)
   - [NETWORK: Three possible ways](#network-three-possible-ways)
   - [DOCKER CONTAINER: Todo and creating](#docker-container-todo-and-creating)
-- [Verwendete Variablen und Konfigurationsdateien<br>Used variables and configuration files](#verwendete-variablen-und-konfigurationsdateienused-variables-and-configuration-files)
+- [Variablen und Konfigurationsdateien<br>Variables and configuration files](#variablen-und-konfigurationsdateienvariables-and-configuration-files)
   - [Inhalt der .env-Datei <br> Contents of the .env file](#inhalt-der-env-datei--contents-of-the-env-file)
   - [Genutzte Container Variablen in den Templates<br>Used container variables in the templates](#genutzte-container-variablen-in-den-templatesused-container-variables-in-the-templates)
 
@@ -326,7 +326,7 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
 
 # Installation of Docspell in Unraid with Docker
 
-_Info: This documentation is tested up to version 0.20.0 of docspell_  
+_Info: This documentation is tested up to version 0.25.1 of docspell_  
  
 Docspell is a personal document organizer / management system (DMS) like Teedy, Mayan, Paperless, Perpermerge,...  
 To run Docspell under unraid as docker, several containers have to be installed that have to communicate with each other.  
@@ -430,7 +430,7 @@ At the beginning I used a "_custom docker network_", but then switched to a VLAN
 <br>  
 <br>  
 
-# Verwendete Variablen und Konfigurationsdateien<br>Used variables and configuration files  
+# Variablen und Konfigurationsdateien<br>Variables and configuration files  
 
 
 ## Inhalt der .env-Datei <br> Contents of the .env file  
