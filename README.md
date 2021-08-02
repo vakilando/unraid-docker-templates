@@ -242,7 +242,7 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
       ---------|----------
        Repository: | docspell/joex:latest
        Extra Parameters (NEU) | --mac-address 04:32:C1:12:02:13 --env-file=/mnt/user/appdata/docspell/.env -e JAVA_OPTS="-Xmx2500m" --no-healthcheck
-       Erklärung: | --mac-address: wenn sie definiert werden soll (optional)<br>-e JAVA_OPTS: mehr RAM für Java zulassen (optional)
+       Erklärung: | --mac-address: optional<br>-e JAVA_OPTS: optional (mehr RAM für Java)
        Post Arguments: (NEU) | /opt/docspell.conf
        Network Type: | br0, custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
@@ -268,7 +268,8 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
       Feld | Wert 
       ---------|----------
        Repository: | docspell/restserver:latest
-       Extra Parameters (NEU) | --mac-address 04:42:E2:13:03:11 --env-file=/mnt/user/appdata/docspell/.env --hostname docspell.domain.com --no-healthcheck
+       Extra Parameters (NEU) | --mac-address 04:42:E2:13:03:11 --env-file=/mnt/user/appdata/docspell/.env --hostname docspell.domain.com
+       Erklärung: | --mac-address: optional
        Post Arguments: (NEU) | /opt/docspell.conf
        Network Type: | custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
@@ -294,7 +295,8 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
       Feld | Wert (anzupassen!)  
       ---------|----------
        Repository: | docspell/dsc:latest
-       Extra Parameters (NEU) | --mac-address 22:42:E1:55:21:03 --env-file=/mnt/user/appdata/docspell/.env --restart=unless-stopped --no-healthcheck
+       Extra Parameters (NEU) | --mac-address 22:42:E1:55:21:03 --env-file=/mnt/user/appdata/docspell/.env --restart=unless-stopped
+       Erklärung: | --mac-address: optional
        Post Arguments: (NEU) | dsc "-vv" "-d" "http://ip.add.re.ss:7880" "watch" "--delete" "-ir" "--header" "Docspell-Integration:SomeRandomString" "/opt/docs"
        Network Type: | custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
