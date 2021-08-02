@@ -7,9 +7,6 @@
   - [DOCKER CONTAINER: Vorarbeiten & Erstellung](#docker-container-vorarbeiten--erstellung)
 - [Docspell installation in Unraid with Docker](#docspell-installation-in-unraid-with-docker)
   - [Three possible ways to achieve that:](#three-possible-ways-to-achieve-that)
-  - [Variation 1: br0](#variation-1-br0)
-  - [Variation 2: VLAN](#variation-2-vlan)
-  - [Variation 3: Custom Docker Network](#variation-3-custom-docker-network)
   - [Todo before creating the containers](#todo-before-creating-the-containers)
 - [Verwendete Variablen und Konfigurationsdateien<br>Used variables and configuration files](#verwendete-variablen-und-konfigurationsdateienused-variables-and-configuration-files)
   - [Inhalt der .env-Datei <br> Contents of the .env file](#inhalt-der-env-datei--contents-of-the-env-file)
@@ -346,34 +343,23 @@ Thread in the Unraid Forum:
 <br>  
 
 ## Three possible ways to achieve that:
-- **br0**  
-_Advantage_: Each container receives an IP from the IP-range your unraid server is in, so you don't have to worry about any ports that may already be used (see below).  
- Diese Variante ist am einfachsten...
-- **VLAN**  
-_Advantage_: Each container receives an IP from the VLAN, so you don't have to worry about any ports that may already be used (see below). In addition, each container can be better "controlled" via a firewall thanks to its own IP.
-- **Custom Docker Network**  
-_Advantage_: The communication between the containers can take place via their names (see e.g. below under "_docspell.conf_").
-    
-At the beginning I used a "_custom docker network_", but then switched to a VLAN in favor of the own IP addresses for each container and beeing able to better control the container communication with my firewall and switches.  
-<br>  
-
-
-## Variation 1: br0
+**br0**  
+_Advantage_: Each container gets an IP from the IP-range your unraid server is in. You don't have to worry about any ports that may already be used (see below). In addition, each container can be better "controlled" via a firewall thanks to its own IP.
 
 - When configuring the docker container use "_br0_" and not "_bridge_"
 - Using "_br0_" each container has its own IP address that is in the IP range the Unraid Server is in.   
 
-<br>  
-
-## Variation 2: VLAN
+**VLAN**  
+_Advantage_: Each container gets an IP from the VLAN IP-range. You don't have to worry about any ports that may already be used (see below). In addition, each container can be better "controlled" via a firewall thanks to its own IP.
 
 - To use VLANs the router / switch used must support VLANs!
 - In Unraid go to "_Settings_" => "_Network Settings_" => "_Enable VLANs_", set it to "_Yes_" and make the necessary settings (Docker and VM service must be terminated beforehand).
 - The newly created VLAN (e.g. "_br0.5_") can now be selected when creating the container.
 
-<br>  
-
-## Variation 3: Custom Docker Network
+**Custom Docker Network**  
+_Advantage_: The communication between the containers can take place via their names (see e.g. below under "_docspell.conf_").
+    
+At the beginning I used a "_custom docker network_", but then switched to a VLAN in favor of the own IP addresses for each container and beeing able to better control the container communication with my firewall and switches.  
 
 - In order for the network to be available when creating the container:  
   In Unraid go to "_Settings_" => "_Docker_". Choose the item "_Preserve user defined networks_" and set it to "_Yes_" (Docker service must be terminated beforehand).
@@ -384,6 +370,7 @@ At the beginning I used a "_custom docker network_", but then switched to a VLAN
 - The newly created custom network "_dnet-docspell_" can now be selected when creating the container.  
 
 <br>  
+<br>  
 
 ## Todo before creating the containers
 
@@ -393,7 +380,7 @@ At the beginning I used a "_custom docker network_", but then switched to a VLAN
 
 2. **Create configuration files**  
    Create the file "`docspell.conf`" in "`/docspell/opt`".  
-   The file can be taken from github: <https://github.com/eikek/docspell/blob/master/docker/docspell.conf>
+   The file can be taken from github: <https://github.com/eikek/docspell/blob/master/docker/docker-compose/docspell.conf>
      
    I made the following changes:
    - all docker names replaced by their IP address:  
@@ -412,7 +399,7 @@ At the beginning I used a "_custom docker network_", but then switched to a VLAN
      (The variables are already specified and described there)
    - OR specified via a central file under "_Extra Parameters_":  
    "`--env-file=/mnt/user/appdata/docspell/.env`"  
-      The file can be taken from github: <https://github.com/eikek/docspell/blob/master/docker/.env>  
+      The file can be taken from github: <https://github.com/eikek/docspell/blob/master/docker/docker-compose/.env>  
       It is saved under "`../appdata/docspell`".  
         
       The "_.env_" file is useful for storing specifications centrally, but requires the file to be created before the Docker is created.  
