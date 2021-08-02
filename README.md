@@ -1,5 +1,5 @@
 
-- [Hinweis: Änderungen seit docspell v0.24](#hinweis-änderungen-seit-docspell-v024)
+- [Hinweis: Änderungen ab docspell v0.24](#hinweis-änderungen-ab-docspell-v024)
     - [Die Hauptunterschiede:](#die-hauptunterschiede)
   - [------- *IN BEARBEITUNG - WORK in PROGRESS* -------](#--------in-bearbeitung---work-in-progress--------)
 - [Installation von Docspell in Unraid Docker](#installation-von-docspell-in-unraid-docker)
@@ -19,22 +19,27 @@
 <br>  
 <br>  
 
-# Hinweis: Änderungen seit docspell v0.24 
-Bis zur Version 0.23 funktioniert die alte Reamde-Version [hier](README_docspell-v0.23.md "Readme Docspell v0.23").  
-Ab Version 0.25 muss diese Vorgehensweise verwendet werden.  
-Warum nicht ab v0.24? Ganz einfach, die habe ich nicht getestet, da ich von v0.23 direkt auf die v0.25 gewechselt bin.  
+# Hinweis: Änderungen ab docspell v0.24
+Bis Version 0.23 funktioniert die alte Version [Reamde hier](README_docspell-v0.23.md "Readme Docspell v0.23").  
+Ab Version 0.25 (vermutlich schon ab v0.24) muss diese Vorgehensweise verwendet werden.  
+Warum nicht ab v0.24? Ich bin von v0.23 direkt auf die v0.25, da ich die Änderungen von ekek0 schlicht nicht mibekonnen habe.  
 ### Die Hauptunterschiede:  
 - Wechsel des Repository: von "`eikek0/docspell`" zu "`docspell`"
 - Wechsel von Postgresql: von 11.7 zu Postgresql 13.3  
-_Achtung:_ kein einfaches Upgrade über major versions möglich!
+_Achtung:_ kein einfaches Upgrade über Major Versionen möglich (siehe Beschreibung unten)!
 - Erneut Benutzung der `.env` Datei für globale Variablen
 
 <br>  
 <br>  
 
 ## ------- *IN BEARBEITUNG - WORK in PROGRESS* -------
-TODO : Aktualisierung der Templates (v0.23 > v0.25)!  
-*Bis dahin: siehe Readme Version 0.23: [hier](README_docspell-v0.23.md "Readme Docspell v0.23")*
+TODO:  
+- Aktualisierung der Container Variablen.  
+Die Templates und die Installation funktionieren zwar, aber ich denke ich kann die Angabe der Variablen und mitgegebenen Docker commands (in "Post Arguments") noch *optimieren*  
+
+DONE :
+- Aktualisierung der Templates (v0.23 > v0.25)!  
+Installation funktioniert mit hier angegebenen Variablen und mitgegebenen Docker commands (in "Post Arguments").  
 <br>  
 <br>  
 
