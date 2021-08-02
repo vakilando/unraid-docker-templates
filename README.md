@@ -147,11 +147,11 @@ der Punkt "_Preserve user defined networks_" auf "_Yes_" gestelt werden (Docker 
 5. **Postgresql upgrade!**  
    Wenn bereits eine ältere Postgresdatenbank mit docspell vorhanden ist sollte sie ein Upgrade erfahren.  
    Ein Upgrade von Version 11.7 auf 13.3 wird hier beschrieben:  
-    1. **Postgresql 13.3 in Unraid parallel zum 11.7 installieren (official repository)**  
+    1. **Postgresql 13.3 in Unraid parallel zu 11.7 installieren (official repository)**  
        Der neue Postgresql 13.3 bekommt die selben Einstellungen wie der 11.7 nur:  
-        - einen anderen Namen
-        - eine andere IP
-        - eine andere MAC Adresse.
+        - einen anderen Namen (sonst ist eine parallele Installation nicht möglich)
+        - eine andere IP (temporär..., sonst ist ein paraleller Start nicht möglich)
+        - eine andere MAC Adresse (temporär..., sonst ist ein paraleller Start nicht möglich)
 
    2. **BACKUP der alte Postgresql 11.7 Datenbank JETZT**  
       Auf Unraid, Backup Verzeichnis in appdata von postgres 11.7 erstellen und betreten:  
@@ -188,9 +188,9 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
    Siehe unten für weitere Informationen bzgl. der Templates.     
    <br>
    1. **postgres**   
-      Ich verwende Postgresql aus dem original Repository  
-      Verwendet wird die Version wie in der dockspell docker-compose.yml: postgres:13.3  
-      Ich habe vorher schin eine Installation mit Postgres:11.7. Upgrade: siehe oben.
+      Ich verwende Postgresql aus dem original Repository.  
+      Verwendet wird die Version wie in der dockspell docker-compose.yml: postgres:13.3.  
+      Ich habe bereits eine Installation mit Postgres:11.7, also ist ein Upgrade notwendig: siehe oben.
       Docker: https://hub.docker.com/\_/postgres/  
         
       _**Wichtige Einstellungen:** sind **fett** markiert._  
@@ -241,7 +241,9 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
       Feld | Wert 
       ---------|----------
        Repository: | docspell/joex:latest
-       Extra Parameters (NEU) | --mac-address 04:32:C1:12:02:13 --env-file=/mnt/user/appdata/docspell/.env -e JAVA_OPTS="-Xmx2500m" --no-healthcheck
+       Extra Parameters (NEU) | --mac-address 04:32:C1:12:02:13 --env-file=/mnt/user/appdata/docspell/.env -e JAVA_OPTS="-Xmx2500m" 
+       --no-healthcheck  
+       --mac-address: wenn sie definiert werden soll (optional)
        Post Arguments: (NEU) | /opt/docspell.conf
        Network Type: | br0, custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
