@@ -242,8 +242,7 @@ Neuer Container postgresql-13.3: IP- und MAC-Adresse auf die Werte des alten set
       ---------|----------
        Repository: | docspell/joex:latest
        Extra Parameters (NEU) | --mac-address 04:32:C1:12:02:13 --env-file=/mnt/user/appdata/docspell/.env -e JAVA_OPTS="-Xmx2500m" --no-healthcheck
-       Erklärung: | --mac-address: wenn sie definiert werden soll (optional)
-       -e JAVA_OPTS: mehr RAM für Java zulassen (optional)
+       Erklärung: | --mac-address: wenn sie definiert werden soll (optional)<br>-e JAVA_OPTS: mehr RAM für Java zulassen (optional)
        Post Arguments: (NEU) | /opt/docspell.conf
        Network Type: | br0, custom-network oder VLAN wählen
        Fixed IP address:  | ...sofern gewünscht...
