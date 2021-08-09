@@ -62,7 +62,6 @@ The script can watch directories recursively and can skip files already uploaded
 For installation instrustions on Unraid see: https://github.com/vakilando/unraid-docker-templates </Description>
   <Networking>
     <Mode>bridge</Mode>
-    <Publish/>
   </Networking>
   <Data>
     <Volume>
