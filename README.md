@@ -43,7 +43,7 @@ Installation funktioniert mit hier angegebenen Variablen und mitgegebenen Docker
 # Installation von Docspell in Unraid Docker
 
 
-_Info: Diese Dokumentation is getestet bis Version 0.25.1 von Docspell_  
+_Info: Diese Dokumentation is getestet bis Version 0.27 von Docspell_  
  
   
 Docspell ist ein Dokumentenmanagementsystem (DMS).  
